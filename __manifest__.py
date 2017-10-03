@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "i4survey",
+    'name': "i4surveyss",
 
     'summary': """
         Short (1 phrase/line) summary of the module's purpose, used as
