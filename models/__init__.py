@@ -1,3 +1,3 @@
 # -*- coding: utf-8 -*-
 
-from . import models
+from . import i4s_data_group

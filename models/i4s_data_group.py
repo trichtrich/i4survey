@@ -2,7 +2,15 @@
 
 from odoo import models, fields, api
 
-class i4s_data_group(models.Model)
+class i4s_data_group(models.Model):
+    _name = 'i4s.data.group'
+    
+    _rec_name = 'name'
+    
+    code = fields.Text(string='Mã')
+    name = fields.Text(string='Tên')
+    description = fields.Text(string='Mô tả')
+    
 # class i4survey(models.Model):
 #     _name = 'i4survey.i4survey'
 
