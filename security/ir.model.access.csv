@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_i4survey_i4survey,i4survey.i4survey,model_i4survey_i4survey,,1,0,0,0
