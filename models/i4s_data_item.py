@@ -3,6 +3,8 @@
 from odoo import models, fields, api
 
 class i4SDaTaItem(models.Model):
+	_name = 'i4s.data.item'
+
 	datagroupid = fields.Integer('datagroupid', track_visibility='always')
 	code = fields.Char(string='CODE')
 	node_1 = fields.Char(string='NODE_1')
