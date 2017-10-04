@@ -65,20 +65,18 @@ class Website(Website):
 			'diachi': diachi
 		})
 		if doanhnghiep:
-			counttitle = self.search_dataitem('i4s.data.item', 1, '', 1)
+			
+			x_result = http.request.env['i4s.data.item'].sudo().search([('datagroupid', '=', 1), ('level', '=', 3)])
+			for i in x_result:
 
-			for x in counttitle:
-				x_result = self.search_dataitem('i4s.data.item', 1, x.node_1, 2)
-				for i in x_result:
+				answer = kw.get('answer_' + str(i.id))
 
-					answer = kw.get('answer_' + str(i.id))
-
-					http.request.env['i4s.survey.result'].sudo().create({
-						'survey_question_id': str(i.id),
-						'survey_question_code': i.code,
-						'doanhnghiepid': str(doanhnghiep.id),
-						'current': answer
-					})
+				http.request.env['i4s.survey.result'].sudo().create({
+					'survey_question_id': str(i.id),
+					'survey_question_code': i.code,
+					'doanhnghiepid': str(doanhnghiep.id),
+					'current': answer
+				})
 
 
 		return http.request.render('i4survey.i4s_homepage', {
