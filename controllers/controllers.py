@@ -55,7 +55,7 @@ class Website(Website):
 			domain.append(('datagroupid', '=', datagroupid))
 
 		if code != '':
-			domain.append(('code', '=', code))
+			domain.append(('node_1', '=', code))
 
 		if level > 0:
 			domain.append(('level', '=', level))
