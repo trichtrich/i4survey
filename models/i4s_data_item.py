@@ -21,3 +21,4 @@ class i4s_data_item(models.Model):
 	validateto = fields.Datetime(string='VALIDATEDTO', readonly=True)
 	result = fields.Char(string='result')
 	isSend = fields.Integer(string='isSend')
+	display_image = fields.Text(string='Ảnh đại diện')
