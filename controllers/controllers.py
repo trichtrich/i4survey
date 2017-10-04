@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 import logging
+import re
+import unicodedata
 
 from odoo import http, _
 from odoo.addons.website.controllers.main import Website
@@ -10,40 +12,32 @@ class Website(Website):
 	@http.route(auth='public')
 	def index(self, data={}, **kw):
 		super(Website, self).index(**kw)
-		return http.request.render('i4survey.i4s_homepage', data)
 
-class Home(http.Controller):
+		results = {}
 
-	@http.route('/survey', auth='public')
-	def survey(self, **kw):
-
-		chienluocs = search_dataitem('i4s.data.item', 1, '01', 2)
-		lanhdaos  = search_dataitem('i4s.data.item', 1, '02', 2)
-		sanphams  = search_dataitem('i4s.data.item', 1, '03', 2)
-		khachhanngs  = search_dataitem('i4s.data.item', 1, '04', 2)
-		vanhanhs  = search_dataitem('i4s.data.item', 1, '05', 2)
-		vanhoas  = search_dataitem('i4s.data.item', 1, '06', 2)
-		connguois  = search_dataitem('i4s.data.item', 1, '07', 2)
-		chinhsachs  = search_dataitem('i4s.data.item', 1, '08', 2)
-		congnghes  = search_dataitem('i4s.data.item', 1, '09', 2)
+		for i in range(1, 10):
+...     	print('0'+str(i))
+			x_result = search_dataitem('i4s.data.item', 1, '0'+str(i), 2)
+			names = search_dataitem('i4s.data.item', 1, '0'+str(i), i)
+			name = no_ac_vi(names[0].name.replace(" ", "").lower())
+			results[name] = x_result
 
 		linhvucs = search_dataitem('i4s.data.item', 2, '', 1)
 
-
 		data = {
-			'chienluocs': chienluocs,
-			'lanhdaos': lanhdaos,
-			'sanphams': sanphams,
-			'khachhanngs': khachhanngs,
-			'vanhanhs': vanhanhs,
-			'vanhoas': vanhoas,
-			'connguois': connguois,
-			'chinhsachs': chinhsachs,
-			'congnghes': congnghes,
+			'results': results,
 			'linhvucs': linhvucs
 		}
 
-		return http.request.render('i4survey.homepage', data)
+		return http.request.render('i4survey.i4s_homepage', data)
+
+
+
+	def no_ac_vi(s):
+		s = s.decode('utf-8')
+		s = re.sub(u'Đ', 'D', s)
+		s = re.sub(u'đ', 'd', s)
+		return unicodedata.normalize('NFKD', unicode(s)).encode('ASCII', 'ignore')
 
 
 
