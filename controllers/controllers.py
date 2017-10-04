@@ -98,3 +98,8 @@ class Website(Website):
 						'doanhnghiepid': str(doanhnghiep.id),
 						'current': answer
 					})
+
+
+		return http.request.render('i4survey.i4s_homepage', {
+            'message': 'Khảo sát thành công'
+        })
