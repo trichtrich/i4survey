@@ -17,7 +17,7 @@ class Website(Website):
 		counttitle = self.search_dataitem('i4s.data.item', 1, '', 1)
 
 		for i in range(len(counttitle)):
-			for x in x_result:
+			for x in counttitle:
 				x_result = self.search_dataitem('i4s.data.item', 1, x.code, 2)
 				name = x.name
 				image = x.display_image
