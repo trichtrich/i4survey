@@ -8,7 +8,7 @@ $(document).ready(function() {
         },
         onTabShow: function(tab, navigation, index) {
             var title = tab.find('a').data('group-title');
-            $('#survey-wizard').find('.group-title').html(title);
+            $('#survey-wizard').find('.wizard-group-title').html(title);
         },
         onTabClick: function(tab, navigation, currentIndex, clickedIndex) {
             if (clickedIndex > maxIndex) return false;

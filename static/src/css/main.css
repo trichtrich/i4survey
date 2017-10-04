@@ -16,14 +16,14 @@
     margin-right: 10px;
 }
 
-.wizard-root .group-title {
+.wizard-root .wizard-group-title {
 	color: #2184be;
 	font-size: 16px;
 	text-transform: uppercase;
 	margin-top: 10px;
 }
 
-.wizard-root .group-title-border {
+.wizard-root .wizard-group-title-border {
 	margin-top: 0;
 	margin-bottom: 25px;
 	border-top: 1px solid #2184be;
@@ -111,7 +111,7 @@
 	color: red;
 }
 
-.question .question-number {
+.group .group-number {
 	background-color: #2184be;
 	border-radius: 100%;
 	color: #fff;
@@ -122,12 +122,21 @@
 	text-align: center;
 }
 
-.question .question-title {
+.group .group-title {
 	font-family: Courier;
     color: Blue;
     font-size: 16px;
 }
 
+.group .group-description {
+	margin-top: 7px;
+    font-size: 13px;
+    color: #777;
+    text-transform: initial;
+    font-style: italic;
+}
+
 #wrapwrap > * {
     display: block;
 }
+

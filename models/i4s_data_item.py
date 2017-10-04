@@ -22,3 +22,4 @@ class i4s_data_item(models.Model):
 	result = fields.Char(string='result')
 	isSend = fields.Integer(string='isSend')
 	display_image = fields.Text(string='Ảnh đại diện')
+	trong_so = fields.Integer(string='Trọng số')

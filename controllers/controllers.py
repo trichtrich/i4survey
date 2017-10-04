@@ -12,53 +12,34 @@ class Website(Website):
 	@http.route(auth='public')
 	def index(self, data={}, **kw):
 		super(Website, self).index(**kw)
-
 		results = []
-		counttitle = self.search_dataitem('i4s.data.item', 1, '', 1)
+		lv1_list = http.request.env['i4s.data.item'].sudo().search([('datagroupid', '=', 1), ('level', '=', 1)], order='displayorder asc')
+		for lv1 in lv1_list:
+			r = {}
+			r['name'] = lv1.name
+			r['image'] = lv1.display_image
 
-		for x in counttitle:
-			x_result = self.search_dataitem('i4s.data.item', 1, x.node_1, 2)
-			name = x.name
-			image = x.display_image
-			e  = {}
-			e['name'] = name
-			e['image'] = image
-			e['questions'] = x_result
+			groups = []
+			lv2_list = http.request.env['i4s.data.item'].sudo().search([('datagroupid', '=', 1), ('node_1', '=', lv1.node_1), ('level', '=', 2)])
+			
+			for lv2 in lv2_list:
+				g = {}
+				g['display'] = lv2.display
+				g['name'] = lv2.name
+				g['description'] = lv2.description
 
-			results.append(e)
+				lv3_list = http.request.env['i4s.data.item'].sudo().search([('datagroupid', '=', 1), ('node_2', '=', lv2.node_2), ('level', '=', 3)])
+				g['questions'] = lv3_list
 
+				groups.append(g)
 
-		linhvucs = self.search_dataitem('i4s.data.item', 2, '', 1)
+			r['groups'] = groups
 
-		data = {
-			'results': results,
-			'linhvucs': linhvucs
-		}
+			results.append(r)
 
-		return http.request.render('i4survey.i4s_homepage', data)
-
-
-
-
-
-
-	def search_dataitem(self, table, datagroupid, node_1, level):
-
-		domain = []
-
-		if datagroupid > 0:
-			domain.append(('datagroupid', '=', datagroupid))
-
-		if node_1 != '':
-			domain.append(('node_1', '=', node_1))
-
-		if level > 0:
-			domain.append(('level', '=', level))
-
-		results = http.request.env[table].sudo().search(domain)
-		return results
-
-
+		return http.request.render('i4survey.i4s_homepage', {
+			'results': results
+		})
 
 	@http.route('/survey', auth='public')
 	def create_survey(self, **kw):
