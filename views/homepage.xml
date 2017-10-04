@@ -8,6 +8,14 @@
                         <li><a href="#tab1" data-toggle="tab" data-group-title="Thông tin doanh nghiệp">1. Thông tin</a></li>
                         <li><a href="#tab2" data-toggle="tab" data-group-title="Chiến lược">2. Chiến lược</a></li>
                         <li><a href="#tab3" data-toggle="tab" data-group-title="Lãnh đạo">3. Lãnh đạo</a></li>
+
+                        <t t-foreach="results" t-as="r" t-as-index="index">
+                            <li>
+                                <a t-att-href="'#tab' + str(index + 2)" data-toggle="tab" data-group-title="Chiến lược">
+                                    <t t-esc="str(index + 2) + '. ' + r.name"/>
+                                </a>
+                            </li>
+                        </t>
                     </ul>
 
                     <div class="progress progress-striped active">
@@ -36,17 +44,17 @@
                                     <div class="form-group mb-7">
                                         <div class="col-md-4 mb-15">
                                             <label class="control-label required">Họ tên</label>
-                                            <input type="text" class="form-control"/>
+                                            <input name="nguoi_daidien" type="text" class="form-control"/>
                                         </div>
 
                                         <div class="col-md-4 mb-15">
                                             <label class="control-label required">Số điện thoại</label>
-                                            <input type="text" class="form-control"/>
+                                            <input name="sodienthoai" type="text" class="form-control"/>
                                         </div>
 
                                         <div class="col-md-4 mb-15">
                                             <label class="control-label required">Email</label>
-                                            <input type="email" class="form-control"/>
+                                            <input name="email" type="email" class="form-control"/>
                                         </div>
                                     </div>
 
@@ -55,15 +63,16 @@
                                     <div class="form-group mb-0">
                                         <div class="col-md-6 mb-15">
                                             <label class="control-label required">Tên doanh nghiệp</label>
-                                            <input type="text" class="form-control"/>
+                                            <input name="ten_doanhnghiep" type="text" class="form-control"/>
                                         </div>
 
                                         <div class="col-md-6 mb-15">
                                             <label class="control-label required">Lĩnh vực hoạt động chính</label>
-                                            <select class="form-control">
+                                            <select name="linhvucid" class="form-control">
                                                 <option></option>
-                                                <option>1</option>
-                                                <option>2</option>
+                                                <option value="01">Công nghệ</option>
+                                                <option value="02">Nông nghiệp</option>
+                                                <option value="03">Du lịch</option>
                                             </select>
                                         </div>
                                     </div>
@@ -71,15 +80,27 @@
                                     <div class="form-group mb-0">
                                         <div class="col-md-6 mb-15">
                                             <label class="control-label required">Số nhân viên</label>
-                                            <input type="text" class="form-control"/>
+                                            <select name="sonhanvien" class="form-control">
+                                                <option></option>
+                                                <option value="01">Dưới 20 nhân viên</option>
+                                                <option value="02">Từ 20 đến dưới 100 nhân viên</option>
+                                                <option value="03">Từ 100 đến dưới 250 nhân viên</option>
+                                                <option value="04">Từ 250 đến dưới 500 nhần viên</option>
+                                                <option value="05">Trên 500 nhân viên</option>
+                                            </select>
                                         </div>
 
                                         <div class="col-md-6 mb-15">
                                             <label class="control-label required">Doanh thu hàng năm</label>
-                                            <select class="form-control">
-                                                <option></option>
-                                                <option>1</option>
-                                                <option>2</option>
+                                            <select name="doanhthu" class="form-control">
+                                                <option></option> 
+                                                <option value="01">Dưới 10 triệu dollars</option> 
+                                                <option value="02">Từ 10 triệu đến dưới 50 triệu dollars</option> 
+                                                <option value="03">Từ 50 triệu đến dưới 100 triệu dollars</option> 
+                                                <option value="04">Từ 100 triệu đến dưới 250 triệu dollars</option> 
+                                                <option value="05">Từ 250 triệu đến dưới 500 triệu dollars</option> 
+                                                <option value="06">Trên 500 triệu dollars</option> 
+                                                <option value="07">Không xác định</option>
                                             </select>
                                         </div>
                                     </div>
@@ -87,7 +108,7 @@
                                     <div class="form-group">
                                         <div class="col-md-12">
                                             <label class="control-label required">Địa chỉ</label>
-                                            <input type="text" class="form-control"/>
+                                            <input name="diachi" type="text" class="form-control"/>
                                         </div>
                                     </div>
                                 </div>

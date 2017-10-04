@@ -16,18 +16,19 @@ class Website(Website):
 		results = []
 
 		for i in range(1, 10):
-...     	print('0'+str(i))
-			x_result = search_dataitem('i4s.data.item', 1, '0'+str(i), 2)
-			names = search_dataitem('i4s.data.item', 1, '0'+str(i), i)
+			x_result = self.search_dataitem('i4s.data.item', 1, '0'+str(i), 2)
+			names = self.search_dataitem('i4s.data.item', 1, '0'+str(i), i)
 			name = names[0].name
+			image = names[0].display_image
 			e  = {}
 			e['name'] = name
+			e['image'] = image
 			e['questions'] = x_result
 
 			results.append(e)
 
 
-		linhvucs = search_dataitem('i4s.data.item', 2, '', 1)
+		linhvucs = self.search_dataitem('i4s.data.item', 2, '', 1)
 
 		data = {
 			'results': results,
@@ -46,18 +47,18 @@ class Website(Website):
 
 
 
-	def search_dataitem(table, datagroupid, code, level):
+	def search_dataitem(self, table, datagroupid, code, level):
 
 		domain = []
 
 		if datagroupid > 0:
-			domain += [('datagroupid', '=', datagroupid)]
+			domain.append(('datagroupid', '=', datagroupid))
 
 		if code != '':
-			domain += [('code', '=', code)]
+			domain.append(('code', '=', code))
 
 		if level > 0:
-			domain =+ [('level', '=', level)]
+			domain.append(('level', '=', level))
 
 		results = http.request.env[table].sudo().search(domain)
 		return results
