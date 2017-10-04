@@ -1,0 +1,133 @@
+.wizard-root ul.nav {
+    margin-bottom: 10px;
+}
+
+.wizard-root ul.nav > li {
+    margin-bottom: 10px
+}
+
+.wizard-root .pager .previous {
+    margin-right: 10px;
+}
+
+.wizard-root .nav-pills a, .wizard-root .nav-pills a:hover, .wizard-root .nav-pills a:focus {
+    background-color: #9dc8e2;
+    color: #fff;
+    margin-right: 10px;
+}
+
+.wizard-root .group-title {
+	color: #2184be;
+	font-size: 16px;
+	text-transform: uppercase;
+	margin-top: 10px;
+}
+
+.wizard-root .group-title-border {
+	margin-top: 0;
+	margin-bottom: 25px;
+	border-top: 1px solid #2184be;
+}
+
+.wizard-root .title {
+	color: #2184be;
+	border-bottom: 1px solid #2184be;
+	text-transform: uppercase;
+	margin-top: 0;
+	margin-bottom: 15px;
+	padding-bottom: 10px;
+	font-size: 16px;
+}
+
+.wizard-root .img-survey {
+	width: 100%;
+}
+
+.wizard-root .pager {
+	margin-top: 0;
+	margin-bottom: 7px;
+}
+
+.wizard-root .pager li a {
+	background-color: #2184be;
+	color: #fff;
+	border: 0;
+	border-radius: 5px;
+}
+
+.wizard-root .pager li.disabled a {
+	background-color: #fff;
+	color: #777;
+	border: 1px solid #ddd;
+	border-radius: 5px;
+}
+
+.navbar-survey {
+	background: url(/i4survey/static/src/images/bg_header.png) no-repeat right top #0e76bc;
+	min-height: 80px;
+	color: #fff;
+	border-radius: 0;
+}
+
+.navbar-survey .navbar-brand {
+	padding-top: 7px;
+}
+
+.navbar-survey .navbar-text {
+	font-family: arial;
+    font-size: 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-rendering: optimizelegibility;
+}
+
+.navbar-survey .navbar-text span {
+	font-weight: normal;
+    font-size: 18px;
+}
+
+.mb-0 {
+	margin-bottom: 0;
+}
+
+.mb-7 {
+	margin-bottom: 7px;
+}
+
+.mb-15 {
+	margin-bottom: 15px;
+}
+
+.mb-20 {
+	margin-bottom: 20px;
+}
+
+.form-survey .control-label {
+	margin-bottom: 7px;
+}
+
+.form-survey .control-label.required::after {
+	content: ' *';
+	color: red;
+}
+
+.question .question-number {
+	background-color: #2184be;
+	border-radius: 100%;
+	color: #fff;
+	font-weight: bold;
+	font-size: 2em;
+	height: 40px;
+	width: 40px;
+	text-align: center;
+}
+
+.question .question-title {
+	font-family: Courier;
+    color: Blue;
+    font-size: 16px;
+}
+
+#wrapwrap > * {
+    display: block;
+}

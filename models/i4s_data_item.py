@@ -2,7 +2,7 @@
 
 from odoo import models, fields, api
 
-class i4SDaTaItem(models.Model):
+class i4s_data_item(models.Model):
 	_name = 'i4s.data.item'
 
 	datagroupid = fields.Integer('datagroupid', track_visibility='always')

@@ -2,14 +2,20 @@
 import logging
 
 from odoo import http, _
-
+from odoo.addons.website.controllers.main import Website
 
 _logger = logging.getLogger(__name__)
+
+class Website(Website):
+	@http.route(auth='public')
+	def index(self, data={}, **kw):
+		super(Website, self).index(**kw)
+		return http.request.render('i4survey.i4s_homepage', data)
 
 class Home(http.Controller):
 
 	@http.route('/survey', auth='public')
-	def survey(self, data{}, **kw):
+	def survey(self, **kw):
 
 		chienluocs = search_dataitem('i4s.data.item', 1, '01', 2)
 		lanhdaos  = search_dataitem('i4s.data.item', 1, '02', 2)

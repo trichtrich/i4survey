@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="stem_header" inherit_id="website.layout" name="STEM Header">
+            <xpath expr="//header" position="replace">
+                <nav class="navbar navbar-survey">
+                    <div class="container-fluid">
+                        <div class="navbar-header">
+                            <a class="navbar-brand" href="/">
+                                <img src="/i4survey/static/src/images/logo.png" class="img img-responsive"/>
+                            </a>
+                            <p class="navbar-text hidden-xs">
+                                Cuộc cách mạng công nghiệp lần thứ 4<br/>
+                                <span>Fourth Industrial Revolution</span>
+                            </p>
+                        </div>
+                    </div>
+                </nav>
+            </xpath>
+        </template>
+
+        <template id="stem_footer" inherit_id="website.layout" name="STEM Footer">
+            <xpath expr="//footer" position="replace">
+            </xpath>
+        </template>
+    </data>
+</odoo>

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "i4surveyss",
+    'name': "i4survey",
 
     'summary': """
         Short (1 phrase/line) summary of the module's purpose, used as
@@ -10,8 +10,8 @@
         Long description of module's purpose
     """,
 
-    'author': "My Company",
-    'website': "http://www.yourcompany.com",
+    'author': "BU1 - DTT",
+    'website': "http://dtt.vn",
 
     # Categories can be used to filter modules in modules listing
     # Check https://github.com/odoo/odoo/blob/master/odoo/addons/base/module/module_data.xml
@@ -20,13 +20,14 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base'],
+    'depends': ['base', 'website', 'web'],
 
     # always loaded
     'data': [
         # 'security/ir.model.access.csv',
-        'views/views.xml',
-        'views/templates.xml',
+        'views/assets.xml',
+        'views/header.xml',
+        'views/homepage.xml',
     ],
     # only loaded in demonstration mode
     'demo': [
