@@ -13,14 +13,19 @@ class Website(Website):
 	def index(self, data={}, **kw):
 		super(Website, self).index(**kw)
 
-		results = {}
+		results = []
 
 		for i in range(1, 10):
 ...     	print('0'+str(i))
 			x_result = search_dataitem('i4s.data.item', 1, '0'+str(i), 2)
 			names = search_dataitem('i4s.data.item', 1, '0'+str(i), i)
-			name = no_ac_vi(names[0].name.replace(" ", "").lower())
-			results[name] = x_result
+			name = names[0].name
+			e  = {}
+			e['name'] = name
+			e['questions'] = x_result
+
+			results.append(e)
+
 
 		linhvucs = search_dataitem('i4s.data.item', 2, '', 1)
 
