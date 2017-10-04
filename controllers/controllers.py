@@ -16,7 +16,7 @@ class Website(Website):
 		results = []
 
 		for i in range(1, 10):
-			x_result = self.search_dataitem('i4s.data.item', 1, '0'+str(i), 2)
+			x_result = self.search_dataitem('i4s.data.item', 1, '0'+str(i), 1)
 			names = self.search_dataitem('i4s.data.item', 1, '0'+str(i), i)
 			name = names[0].name
 			image = names[0].display_image
