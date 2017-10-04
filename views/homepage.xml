@@ -6,13 +6,11 @@
                 <div id="survey-wizard" class="wizard-root">
                     <ul>
                         <li><a href="#tab1" data-toggle="tab" data-group-title="Thông tin doanh nghiệp">1. Thông tin</a></li>
-                        <li><a href="#tab2" data-toggle="tab" data-group-title="Chiến lược">2. Chiến lược</a></li>
-                        <li><a href="#tab3" data-toggle="tab" data-group-title="Lãnh đạo">3. Lãnh đạo</a></li>
 
-                        <t t-foreach="results" t-as="r" t-as-index="index">
+                        <t t-foreach="results" t-as="r">
                             <li>
-                                <a t-att-href="'#tab' + str(index + 2)" data-toggle="tab" data-group-title="Chiến lược">
-                                    <t t-esc="str(index + 2) + '. ' + r.name"/>
+                                <a t-att-href="'#tab' + str(r_index + 2)" data-toggle="tab" data-group-title="Chiến lược">
+                                    <t t-esc="str(r_index + 2) + '. ' + r['name']"/>
                                 </a>
                             </li>
                         </t>
@@ -38,7 +36,9 @@
                                     <img class="img img-responsive img-survey" src="/i4survey/static/src/images/company-profile.jpg"/>
                                 </div>
 
-                                <div class="col-md-7 mb-20 form-horizontal form-survey">
+                                <form id="form-survey" class="col-md-7 mb-20 form-horizontal form-survey" method="POST" action="/survey">
+                                    <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                                    
                                     <h4 class="title">Thông tin người khảo sát</h4>
 
                                     <div class="form-group mb-7">
@@ -111,133 +111,51 @@
                                             <input name="diachi" type="text" class="form-control"/>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tab-pane" id="tab2">
-                            <div class="row">
-                                <div class="col-md-5 mb-20">
-                                    <img class="img img-responsive img-survey" src="/i4survey/static/src/images/strategy.jpg"/>
-                                </div>
-
-                                <div class="col-md-7 mb-20">
-                                    <div class="row question">
-                                        <div class="col-md-1 mb-20">
-                                            <div class="question-number">1</div>
-                                        </div>
-
-                                        <div class="col-md-8 mb-20">
-                                            <div class="question-title">Có lộ trình cho I4.0</div>
-                                            <div class="question-content">Mức độ chi tiết để thực hiện lộ trình I4.0 trong DN của bạn như thế nào?</div>
-                                        </div>
-
-                                        <div class="col-md-2 mb-20">
-                                            <select class="form-control">
-                                                <option>0</option>
-                                                <option>1</option>
-                                                <option>2</option>
-                                                <option>3</option>
-                                                <option>4</option>
-                                                <option>5</option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <div class="row question">
-                                        <div class="col-md-1 mb-20">
-                                            <div class="question-number">2</div>
-                                        </div>
-
-                                        <div class="col-md-8 mb-20">
-                                            <div class="question-title">Sẵn sàng nguồn lực cho I4.0</div>
-                                            <div class="question-content">DN của của bạn có nguồn lực thực hiện I4.0 không? (như tài chính, nhân lực, chính sách ... cho I4.0)</div>
-                                        </div>
-
-                                        <div class="col-md-2 mb-20">
-                                            <select class="form-control">
-                                                <option>0</option>
-                                                <option>1</option>
-                                                <option>2</option>
-                                                <option>3</option>
-                                                <option>4</option>
-                                                <option>5</option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <div class="row question">
-                                        <div class="col-md-1 mb-20">
-                                            <div class="question-number">3</div>
-                                        </div>
-
-                                        <div class="col-md-8 mb-20">
-                                            <div class="question-title">Ghi lại và truyền đạt lại những hoạt động của I4.0</div>
-                                            <div class="question-content">DN của bạn có những hoạt động truyền đạt kiến thức về I4.0 không? như các hội thảo,sự kiện, truyền thông về I4.0</div>
-                                        </div>
-
-                                        <div class="col-md-2 mb-20">
-                                            <select class="form-control">
-                                                <option>0</option>
-                                                <option>1</option>
-                                                <option>2</option>
-                                                <option>3</option>
-                                                <option>4</option>
-                                                <option>5</option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <div class="row question">
-                                        <div class="col-md-1 mb-20">
-                                            <div class="question-number">4</div>
-                                        </div>
-
-                                        <div class="col-md-8 mb-20">
-                                            <div class="question-title">Ghi lại và truyền đạt lại những hoạt động của I4.0</div>
-                                            <div class="question-content">DN của bạn có những hoạt động truyền đạt kiến thức về I4.0 không? như các hội thảo,sự kiện, truyền thông về I4.0</div>
-                                        </div>
-
-                                        <div class="col-md-2 mb-20">
-                                            <select class="form-control">
-                                                <option>0</option>
-                                                <option>1</option>
-                                                <option>2</option>
-                                                <option>3</option>
-                                                <option>4</option>
-                                                <option>5</option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <div class="row question">
-                                        <div class="col-md-1 mb-20">
-                                            <div class="question-number">5</div>
-                                        </div>
-
-                                        <div class="col-md-8 mb-20">
-                                            <div class="question-title">Ghi lại và truyền đạt lại những hoạt động của I4.0</div>
-                                            <div class="question-content">DN của bạn có những hoạt động truyền đạt kiến thức về I4.0 không? như các hội thảo,sự kiện, truyền thông về I4.0</div>
-                                        </div>
-
-                                        <div class="col-md-2 mb-20">
-                                            <select class="form-control">
-                                                <option>0</option>
-                                                <option>1</option>
-                                                <option>2</option>
-                                                <option>3</option>
-                                                <option>4</option>
-                                                <option>5</option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                </div>
+                                </form>
                             </div>
                         </div>
 
-                        <div class="tab-pane" id="tab3">
-                          3
-                        </div>
+                        <t t-foreach="results" t-as="r">
+                            <div class="tab-pane" t-att-id="'tab' + str(r_index + 2)">
+                                <div class="row">
+                                    <div class="col-md-5 mb-20">
+                                        <img class="img img-responsive img-survey" t-att-src="r['image']"/>
+                                    </div>
+
+                                    <div class="col-md-7 mb-20">
+                                        <t t-foreach="r['questions']" t-as="q">
+                                            <div class="row question">
+                                                <div class="col-md-1 mb-20">
+                                                    <div class="question-number">
+                                                        <t t-raw="q_index + 1"/>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-8 mb-20">
+                                                    <div class="question-title">
+                                                        <t t-esc="q.display"/>
+                                                    </div>
+                                                    <div class="question-content">
+                                                        <t t-esc="q.name"/>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-2 mb-20">
+                                                    <select t-att-name="'answer_' + str(q.id)" class="form-control" form="form-survey">
+                                                        <option>0</option>
+                                                        <option>1</option>
+                                                        <option>2</option>
+                                                        <option>3</option>
+                                                        <option>4</option>
+                                                        <option>5</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </t>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
                         
                     </div>
                     

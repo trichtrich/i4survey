@@ -39,11 +39,6 @@ class Website(Website):
 
 
 
-	def no_ac_vi(s):
-		s = s.decode('utf-8')
-		s = re.sub(u'Đ', 'D', s)
-		s = re.sub(u'đ', 'd', s)
-		return unicodedata.normalize('NFKD', unicode(s)).encode('ASCII', 'ignore')
 
 
 
@@ -54,8 +49,8 @@ class Website(Website):
 		if datagroupid > 0:
 			domain.append(('datagroupid', '=', datagroupid))
 
-		if code != '':
-			domain.append(('node_1', '=', code))
+		if node_1 != '':
+			domain.append(('node_1', '=', node_1))
 
 		if level > 0:
 			domain.append(('level', '=', level))

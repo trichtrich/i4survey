@@ -23,4 +23,8 @@ $(document).ready(function() {
             }
         }
     });
+
+    $('#survey-wizard .finish').click(function() {
+        $('#form-survey').submit();
+    });
 });
