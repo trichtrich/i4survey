@@ -14,18 +14,19 @@ class Website(Website):
 		super(Website, self).index(**kw)
 
 		results = []
+		counttitle = self.search_dataitem('i4s.data.item', 1, '', 1)
 
-		for i in range(1, 10):
-			x_result = self.search_dataitem('i4s.data.item', 1, '0'+str(i), 1)
-			names = self.search_dataitem('i4s.data.item', 1, '0'+str(i), i)
-			name = names[0].name
-			image = names[0].display_image
-			e  = {}
-			e['name'] = name
-			e['image'] = image
-			e['questions'] = x_result
+		for i in range(len(counttitle)):
+			for x in x_result:
+				x_result = self.search_dataitem('i4s.data.item', 1, x.code, 2)
+				name = x.name
+				image = x.display_image
+				e  = {}
+				e['name'] = name
+				e['image'] = image
+				e['questions'] = x_result
 
-			results.append(e)
+				results.append(e)
 
 
 		linhvucs = self.search_dataitem('i4s.data.item', 2, '', 1)
