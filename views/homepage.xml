@@ -3,9 +3,9 @@
     <template id="i4s_homepage" name="Phiếu khảo sát">
         <t t-call="website.layout">
             <div class="container-fluid">
-                <div class="alert alert-success" t-if="message">
+                <!-- <div class="alert alert-success" t-if="message">
                     <t t-esc="message"/>
-                </div>
+                </div> -->
 
                 <div id="survey-wizard" class="wizard-root">
                     <ul>

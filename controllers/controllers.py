@@ -41,7 +41,8 @@ class Website(Website):
 			'results': results
 		})
 
-	@http.route('/survey', auth='public')
+class i4survey(http.Controller):
+	@http.route('/survey', auth='public', methods=['POST'], website=True)
 	def create_survey(self, **kw):
 		nguoi_daidien = kw.get('nguoi_daidien')
 		sodienthoai = kw.get('sodienthoai')
@@ -79,6 +80,4 @@ class Website(Website):
 				})
 
 
-		return http.request.render('i4survey.i4s_homepage', {
-            'message': 'Khảo sát thành công'
-        })
+		return http.request.redirect('/')
