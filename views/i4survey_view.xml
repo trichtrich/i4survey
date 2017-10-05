@@ -1,11 +1,11 @@
 <?xml version="1.0" ?>
 <odoo>
-    <template id="i4s_homepage" name="Phiếu khảo sát">
+    <template id="i4s_result" name="Phiếu khảo sát">
         <t t-call="website.layout">
             <div class="container-fluid">
             	<div id="survey-wizard" class="wizard-root">
                     <ul>
-                        <li><a href="#tab1" data-toggle="tab" data-group-title="Thông tin doanh nghiệp">Biểu đồ tổng hợp</a></li>
+                        <li><a href="#tab1" data-toggle="tab" data-group-title="Biểu đồ tổng hợp">Biểu đồ tổng hợp</a></li>
 
                         <t t-foreach="results" t-as="r">
                             <li>
@@ -16,10 +16,6 @@
                         </t>
                     </ul>
 
-                    <div class="progress progress-striped active">
-                        <div class="progress-bar"></div>
-                    </div>
-
                     <h4 class="wizard-group-title pull-left"></h4>
                     <ul class="pager wizard pull-right">
                         <li class="previous"><a href="javascript:;">Trước</a></li>
@@ -27,12 +23,36 @@
                     </ul>
                     <div class="clearfix"></div>
                     <hr class="wizard-group-title-border"/>
+                    
                     <div class="tab-content">
                     	<div class="tab-pane" id="tab1">
                             <div class="row">
-                            	
+                            	Biểu đồ tổng hợp
                             </div>
                         </div>
+                        <t t-foreach="results" t-as="r">
+                            <div class="tab-pane" t-att-id="'tab' + str(r_index + 2)">
+                                <div class="row">
+                                    <div class="col-md-7 mb-20">
+                                        <t t-raw="r['groups']"/>
+                                        <t t-foreach="r['groups']" t-as="g">
+                                            <div class="row group">
+                                                <div class="col-md-10 mb-20">
+                                                    <div class="group-title">
+                                                        <t t-esc="g['display']"/>
+                                                    </div>
+
+                                                    <div class="group-description">
+                                                        <t t-esc="g['total']"/>
+                                                    </div>
+                                                </div>
+                                                <div id="container-chart" style="min-width: 400px; max-width: 600px; height: 400px; margin: 0 auto"></div>
+                                            </div>
+                                        </t>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
                     </div>
                 </div>
             </div>

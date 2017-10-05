@@ -71,13 +71,16 @@ class i4survey(http.Controller):
 			for i in x_result:
 
 				answer = kw.get('answer_' + str(i.id))
-
+				expected = i.trong_so * float(answer) / 100
 				http.request.env['i4s.survey.result'].sudo().create({
 					'survey_question_id': str(i.id),
-					'survey_question_code': i.code,
+					'survey_question_code': i.node_2,
 					'doanhnghiepid': str(doanhnghiep.id),
-					'current': answer
+					'current': answer,
+					'expected': expected
 				})
+
+			#lv2_list = http.request.env['i4s.data.item'].sudo().search([('datagroupid', '=', 1), ('node_1', '=', lv1.node_1), ('level', '=', 2)])
 
 		template = http.request.env.ref('i4survey.doanhnghiep_mail_template')
 		http.request.env['mail.template'].sudo().browse(template.id).send_mail(doanhnghiep.id, force_send=True)
@@ -85,3 +88,43 @@ class i4survey(http.Controller):
             'message': 'Khảo sát thành công, vui lòng check email để xem kết quả.',
             'type': 'success'
         })
+
+
+
+	@http.route('/i4survey/results/<int:doanhnghiepid>', type='http', auth="public", website=True)
+	def view_result(self, doanhnghiepid, **kw):
+
+		doanhnghiep = http.request.env['i4s.doanhnghiep'].sudo().browse([doanhnghiepid])
+
+		results = []
+		lv1_list = http.request.env['i4s.data.item'].sudo().search([('datagroupid', '=', 1), ('level', '=', 1)], order='displayorder asc')
+		for lv1 in lv1_list:
+			r = {}
+			r['name'] = lv1.name
+			r['image'] = lv1.display_image
+
+			groups = []
+			lv2_list = http.request.env['i4s.data.item'].sudo().search([('datagroupid', '=', 1), ('node_1', '=', lv1.node_1), ('level', '=', 2)])
+			
+			for lv2 in lv2_list:
+				
+				total = 0
+				i4survey_results = http.request.env['i4s.survey.result'].sudo().search([('survey_question_code', '=', lv2.code), ('doanhnghiepid', '=', str(doanhnghiep.id))])
+				for t in i4survey_results:
+					total += float(t.expected)
+				
+				
+				g = {}
+				g['display'] = lv2.display
+				g['name'] = lv2.name
+				g['total'] = total
+				groups.append(g)
+
+			r['groups'] = groups
+
+			results.append(r)
+		data = {
+			'results': results
+		}
+
+		return http.request.render('i4survey.i4s_result', data)
