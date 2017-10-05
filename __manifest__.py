@@ -20,7 +20,7 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base', 'website', 'web'],
+    'depends': ['base', 'website', 'web', 'mail'],
 
     # always loaded
     'data': [
@@ -28,6 +28,9 @@
         'views/assets.xml',
         'views/header.xml',
         'views/homepage.xml',
+        'views/i4survey_view.xml',
+        'views/i4survey_mail_template.xml',
+        'views/result_message.xml',
     ],
     # only loaded in demonstration mode
     'demo': [
