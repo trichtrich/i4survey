@@ -3,7 +3,7 @@
     <template id="i4s_result" name="Phiếu khảo sát">
         <t t-call="website.layout">
             <div class="container-fluid">
-            	<div id="survey-wizard" class="wizard-root">
+                <div id="survey-wizard" class="wizard-root">
                     <ul>
                         <li><a href="#tab1" data-toggle="tab" data-group-title="Biểu đồ tổng hợp">Biểu đồ tổng hợp</a></li>
 
@@ -25,16 +25,17 @@
                     <hr class="wizard-group-title-border"/>
                     
                     <div class="tab-content">
-                    	<div class="tab-pane" id="tab1">
+                        <div class="tab-pane" id="tab1">
                             <div class="row">
-                            	Biểu đồ tổng hợp
+                                Biểu đồ tổng hợp
                             </div>
                         </div>
                         <t t-foreach="results" t-as="r">
                             <div class="tab-pane" t-att-id="'tab' + str(r_index + 2)">
+                                <input type="hidden" t-att-value="'tab' + str(r_index + 2)" id="iTab"/>
+                                <input type="hidden" t-att-value="r['name']" id="nameChart"/>
                                 <div class="row">
                                     <div class="col-md-7 mb-20">
-                                        <t t-raw="r['groups']"/>
                                         <t t-foreach="r['groups']" t-as="g">
                                             <div class="row group">
                                                 <div class="col-md-10 mb-20">
@@ -46,12 +47,84 @@
                                                         <t t-esc="g['total']"/>
                                                     </div>
                                                 </div>
-                                                <div id="container-chart" style="min-width: 400px; max-width: 600px; height: 400px; margin: 0 auto"></div>
                                             </div>
                                         </t>
                                     </div>
+                                    <input type="hidden" t-att-value="'container-chart' + str(r['idstr'])" id="idChart"/>
+                                    <input type="hidden" value="['2.5','3.1','2.1','2.9','2.0','2.1']" id="total_mark"/>
+                                    <div t-att-id="'container-chart' + str(r['idstr'])" style="min-width: 400px; max-width: 600px; height: 400px; margin: 0 auto"></div>
                                 </div>
                             </div>
+                            <script>
+                                $(document).ready(function () {
+                                    var iTab = $('#iTab').val();
+                                    var nameChart = $('#nameChart').val();
+                                    var idChart = $('#idChart').val();
+                                    var total = '[';
+                                    var gname = '';
+                                    var idQuery = iTab + ' .group-description'
+                                    $(idQuery).each(function(){
+                                        total += "" + this.innerText.trim() + ", ";
+                                    });
+                                    total += ']';
+
+                                    $('#tab2 .group-title').each(function(){
+                                        gname += "'" + this.innerText.trim() + "',";
+                                    });
+
+                                    var data = {"name": nameChart, "data": total};
+                                    console.log(data);
+
+                                    var options = {
+
+                                        chart: {
+                                            renderTo: '',
+                                            polar: true,
+                                            type: 'line'
+                                        },
+
+                                        title: {
+                                            text: 'Budget vs spending',
+                                            x: -80
+                                        },
+
+                                        pane: {
+                                            size: '80%'
+                                        },
+
+                                        xAxis: {
+                                            categories: ['Budget', 'Budget', 'Budget', 'Budget', 'Budget', 'Budget'],
+                                            tickmarkPlacement: 'on',
+                                            lineWidth: 0
+                                        },
+
+                                        yAxis: {
+                                            gridLineInterpolation: 'polygon',
+                                            lineWidth: 0,
+                                            min: 0
+                                        },
+
+                                        tooltip: {
+                                            shared: true,
+                                            pointFormat: '${point.y:,.0f}'
+                                        },
+
+                                        legend: {
+                                            align: 'right',
+                                            verticalAlign: 'top',
+                                            y: 70,
+                                            layout: 'vertical'
+                                        },
+
+                                        series: []
+                                    };
+
+                                    options.chart.renderTo = idChart;
+                                    
+                                    options.series[0] = data;
+                                    var iChart = new Highcharts.Chart(options);
+                                });
+                            </script>
                         </t>
                     </div>
                 </div>

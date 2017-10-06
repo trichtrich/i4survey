@@ -100,6 +100,7 @@ class i4survey(http.Controller):
 		lv1_list = http.request.env['i4s.data.item'].sudo().search([('datagroupid', '=', 1), ('level', '=', 1)], order='displayorder asc')
 		for lv1 in lv1_list:
 			r = {}
+			r['idstr'] = lv1.id
 			r['name'] = lv1.name
 			r['image'] = lv1.display_image
 
