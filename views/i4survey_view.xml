@@ -113,7 +113,7 @@
 
                                         tooltip: {
                                             shared: true,
-                                            pointFormat: '${point.y:,.0f}'
+                                            pointFormat: '{point.y:,.1f}'
                                         },
 
                                         legend: {
