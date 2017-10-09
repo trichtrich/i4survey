@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <!-- Main Menu of STEM Translate -->
+        <menuitem id="i4s_main_menu" name="Đánh giá CMCN 4.0" />
+
+        <!-- Translate request -->
+        <menuitem id="i4s_datagroup_menu" parent="i4s_main_menu" name="Data Group" action="i4s_datagroup_list_action"/>
+
+        <!-- Your translations -->
+        <menuitem id="i4s_dataitem_menu" parent="i4s_main_menu" name="Data Item" action="i4s_dataitem_list_action"/>
+    </data>
+</odoo>
