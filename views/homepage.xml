@@ -147,7 +147,7 @@
 
                                                 <t t-foreach="g['questions']" t-as="q">
                                                     <div class="col-md-offset-1 col-md-8 mb-20">
-                                                        <t t-esc="q.name"/>
+                                                        <t t-esc="q['name']"/>
                                                     </div>
 
                                                     <div class="col-md-2 mb-20">
@@ -207,6 +207,132 @@
                     </div>
                     
                 </div>
+            </div>
+        </t>
+    </template>
+
+    <template id="i4s_home" name="Trang chủ">
+        <t t-call="website.layout">
+            <div class="container-fluid">
+                <header class="hearder-home"> 
+                    <div class="header-content"> 
+                        <div class="header-content-inner"> 
+                            <h1>Cuộc cách mạng<br/> công nghiệp lần thứ 4</h1> 
+                            <h2>Fourth Industrial Revolution</h2> 
+                            <hr/> 
+                            <a href="/i4survey" class="btn btn-primary btn-xl page-scroll">Tự đánh giá</a>
+                        </div> 
+                    </div> 
+                </header>
+                <section class="bg-primary" id="about"> 
+                    <div class="container"> 
+                        <div class="row"> 
+                            <div class="col-lg-12 text-center"> 
+                                <h2 class="section-heading">Chào mừng bạn đến với<br/> Cuộc cách mạng công nghiệp lần thứ 4</h2> 
+                            </div> 
+                            <div class="col-lg-6 text-justify"> 
+                                <p class="text-faded">Khái niệm Cuộc cách mạng Công nghiệp lần thứ Tư (CMCN4) hay là Industry 4.0 (tiếng Đức là Industrie 4.0) lần đầu tiên được đề cập trong bản Kế hoạch hành động chiến lược công nghệ cao được Chính phủ Đức thông qua vào năm 2012. Theo giáo sư Klaus Schwab, chủ tịch Diễn đàn Kinh tế Thế giới, CMCN4 là một thuật ngữ bao gồm một loạt các công nghệ tự động hóa hiện đại, trao đổi dữ liệu và chế tạo. CMCN4 tạo điều kiện cho Sản xuất Nâng cao (Advanced Manufacturing) với sự kết hợp của công nghệ trong các lĩnh vực vật lý, công nghệ số và sinh học, tạo ra những khả năng hoàn toàn mới và có tác động sâu sắc tới các hệ thống chính trị, xã hội, kinh tế của thế giới. Khi đó, một thế giới chạy bằng robot và máy tính với trí tuệ nhân tạo có thể phát triển tới mức thay thế con người trong việc phán đoán và quản lý các hệ thống phức tạp.</p> 
+                            </div> 
+                            <div class="col-lg-6">
+                                <img class="img-responsive" src="/i4survey/static/src/images/Industry_4.png" alt=""/>
+                            </div> 
+                            <div class="col-md-12 text-center">
+                                <a href="/i4survey" class="btn btn-default btn-xl"  style="margin-top: 20px;">Tự đánh giá</a>
+                            </div> 
+                        </div> 
+                    </div> 
+                </section>
+                <section id="services"> 
+                    <div class="container-fluid"> 
+                        <div class="row"> 
+                            <div class="col-lg-12 text-center"> 
+                                <h2 class="section-heading">Giới thiệu Công cụ đánh giá</h2> 
+                                <hr class="primary"/> 
+                            </div> 
+                        </div> 
+                    </div> 
+                    <div class="container"> 
+                        <div class="row"> 
+                            <div class="col-md-12"> 
+                                <img class="img-responsive" src="/i4survey/static/src/images/prinzip.png" alt=""/> 
+                            </div> 
+                            <h3 class="col-md-12 text-center">Đánh giá mô hình tăng trưởng của doanh nghiệp theo mức độ sẵn sàng với CMCN 4.0</h3> 
+                            <div class="col-md-12"> 
+                                <table class="table table-bordered table-striped"> 
+                                    <thead> 
+                                        <tr> 
+                                            <th class="text-center">Nội dung</th> 
+                                            <th class="text-center">Mô tả</th> 
+                                        </tr> 
+                                    </thead> 
+                                    <tbody> 
+                                        <tr> 
+                                            <td>Chiến lược</td>
+                                             <td>Lộ trình thực hiện CMCN4.0, Nguồn lực hiện có sẵn để thực hiện, Thích ứng của các mô hình kinh doanh,...</td> 
+                                         </tr> 
+                                         <tr> 
+                                            <td>Lãnh đạo</td> 
+                                            <td>Sẵn sàng của các nhà lãnh đạo, Năng lực quản lý và phương pháp,Có điều phối trung tâm cho CMCN4.0,...</td> 
+                                        </tr> 
+                                        <tr> 
+                                            <td>Khách hàng</td> 
+                                            <td>Sử dụng dữ liệu khách hàng, Số hóa quy trình bán hàng/dịch vụ, Năng lực truyền thông số đến khách hàng...</td> 
+                                        </tr> 
+                                        <tr> 
+                                            <td>Sản phẩm</td> 
+                                            <td>Cá nhân hóa các sản phẩm, Số hóa các sản phẩm, Tích hợp sản phẩm vào các hệ thống khác,...</td> 
+                                        </tr> 
+                                        <tr> 
+                                            <td>Vận hành</td>
+                                             <td>Phân cấp quy trình, Mô hình và mô phỏng, Liên ngành, Phối hợp liên ngành,...</td> 
+                                         </tr> 
+                                         <tr> 
+                                            <td>Văn hóa</td> 
+                                            <td>Chia sẻ tri thức, Sáng tạo mở và sự hợp tác của các công ty, Giá trị của công nghệ thông tin trong công ty,...</td> 
+                                        </tr> 
+                                        <tr> 
+                                            <td>Con người</td> 
+                                            <td>Năng lực công nghệ thông tin của nhân viên, Sự cởi mở của nhân viên với công nghệ mới, Tự chủ của người lao động,...</td> 
+                                        </tr> 
+                                        <tr> 
+                                            <td>Chính sách</td> 
+                                            <td>Quy định về nhân viên cho CMCN4.0, Phù hợp các tiêu chuẩn công nghệ, Bảo vệ sở hữu trí tuệ,...</td> 
+                                        </tr> 
+                                        <tr> 
+                                            <td>Công nghệ</td> 
+                                            <td>Có công nghệ thông tin hiện đại, Sử dụng các thiết bị di động, Sử dụng giao tiếp máy tới máy,...</td> 
+                                        </tr> 
+                                    </tbody> 
+                                </table> 
+                            </div> 
+                            <div class="col-md-12 text-center">
+                                <a href="/i4survey" class="btn btn-primary btn-xl">Tự đánh giá</a>
+                            </div> 
+                        </div> 
+                    </div>
+                </section>
+                <section id="contact"> 
+                    <div class="container"> 
+                        <div class="row"> 
+                            <div class="col-lg-8 col-lg-offset-2 text-center"> 
+                                <h2 class="section-heading">Cuộc cách mạng công nghiệp lần thứ 4</h2> 
+                                <h3>Fourth Industrial Revolution</h3> 
+                                <hr class="primary"/> 
+                                <p>Mọi thông tin xin liên hệ</p> 
+                            </div> 
+                            <div class="col-lg-4 col-lg-offset-2 text-center"> 
+                                <i class="fa fa-phone fa-3x wow bounceIn"></i> 
+                                <p>04 35896256</p> 
+                            </div> 
+                            <div class="col-lg-4 text-center"> 
+                                <i class="fa fa-envelope-o fa-3x wow bounceIn" data-wow-delay=".1s"></i> 
+                                <p>
+                                    <a href="#">xxx.xxx@chuyendoiso.com</a>
+                                </p> 
+                            </div> 
+                        </div> 
+                    </div> 
+                </section>
             </div>
         </t>
     </template>

@@ -3,7 +3,7 @@
     <data>
         <template id="stem_header" inherit_id="website.layout" name="STEM Header">
             <xpath expr="//header" position="replace">
-                <nav class="navbar navbar-survey">
+                <header class="navbar navbar-survey">
                     <div class="container-fluid">
                         <div class="navbar-header">
                             <a class="navbar-brand" href="/">
@@ -15,6 +15,30 @@
                             </p>
                         </div>
                     </div>
+                </header>
+                <nav class="navbar site-navigation" id="navigation" role="navigation">
+                    <div class="container">
+                        <a class="menu-bar" data-toggle="collapse" href="#defaultNavbar1">
+                            <span class="bars"></span>            
+                        </a>
+                        <div class="collapse nav-collapse" id="defaultNavbar1">
+                            <ul class="nav navbar-nav navbar-right">
+                                <li>
+                                    <a class="text-trang hover" href="/">Trang chủ</a>
+                                </li>
+                                <li>
+                                    <a class="bt-dangnhap MR10" t-attf-href="/i4survey">
+                                        Tự đánh giá
+                                    </a>
+                                </li>
+                                <li groups="base.group_public">
+                                    <a class="bt-dangnhap MR10" t-attf-href="/web/login">
+                                        Đăng nhập
+                                    </a>
+                                </li>
+                            </ul>
+                        </div> 
+                    </div> 
                 </nav>
             </xpath>
         </template>

@@ -12,34 +12,9 @@ class Website(Website):
 	@http.route(auth='public')
 	def index(self, data={}, **kw):
 		super(Website, self).index(**kw)
-		results = []
-		lv1_list = http.request.env['i4s.data.item'].sudo().search([('datagroupid', '=', 1), ('level', '=', 1)], order='displayorder asc')
-		for lv1 in lv1_list:
-			r = {}
-			r['name'] = lv1.name
-			r['image'] = lv1.display_image
 
-			groups = []
-			lv2_list = http.request.env['i4s.data.item'].sudo().search([('datagroupid', '=', 1), ('node_1', '=', lv1.node_1), ('level', '=', 2)])
-			
-			for lv2 in lv2_list:
-				g = {}
-				g['display'] = lv2.display
-				g['name'] = lv2.name
-				g['description'] = lv2.description
+		return http.request.render('i4survey.i4s_home')
 
-				lv3_list = http.request.env['i4s.data.item'].sudo().search([('datagroupid', '=', 1), ('node_2', '=', lv2.node_2), ('level', '=', 3)])
-				g['questions'] = lv3_list
-
-				groups.append(g)
-
-			r['groups'] = groups
-
-			results.append(r)
-
-		return http.request.render('i4survey.i4s_homepage', {
-			'results': results
-		})
 
 class i4survey(http.Controller):
 	@http.route('/survey', auth='public', methods=['POST'], website=True)
@@ -97,12 +72,15 @@ class i4survey(http.Controller):
 		doanhnghiep = http.request.env['i4s.doanhnghiep'].sudo().browse([doanhnghiepid])
 
 		results = []
+		tabval = []
+		total_all = 0
 		lv1_list = http.request.env['i4s.data.item'].sudo().search([('datagroupid', '=', 1), ('level', '=', 1)], order='displayorder asc')
 		for lv1 in lv1_list:
 			r = {}
 			r['idstr'] = lv1.id
 			r['name'] = lv1.name
 			r['image'] = lv1.display_image
+
 
 			groups = []
 			lv2_list = http.request.env['i4s.data.item'].sudo().search([('datagroupid', '=', 1), ('node_1', '=', lv1.node_1), ('level', '=', 2)])
@@ -114,7 +92,7 @@ class i4survey(http.Controller):
 				for t in i4survey_results:
 					total += float(t.expected)
 				
-				
+				total_all += total
 				g = {}
 				g['display'] = lv2.display
 				g['name'] = lv2.name
@@ -123,9 +101,50 @@ class i4survey(http.Controller):
 
 			r['groups'] = groups
 
+			
+			ta = {}
+			ta['name'] = lv1.name
+			total_all = total_all / len(lv2_list)
+			#_logger.info('-------------total_all---------------: ' + str(round(total_all,2)))
+			ta['total_all'] = round(total_all,2)
+			tabval.append(ta)
+
 			results.append(r)
 		data = {
-			'results': results
+			'results': results,
+			'resultsTab1': tabval
 		}
 
 		return http.request.render('i4survey.i4s_result', data)
+
+
+	@http.route('/i4survey', type='http', auth="public", website=True)
+	def i4survey(self, **kw):
+		results = []
+		lv1_list = http.request.env['i4s.data.item'].sudo().search([('datagroupid', '=', 1), ('level', '=', 1)], order='displayorder asc')
+		for lv1 in lv1_list:
+			r = {}
+			r['name'] = lv1.name
+			r['image'] = lv1.display_image
+
+			groups = []
+			lv2_list = http.request.env['i4s.data.item'].sudo().search([('datagroupid', '=', 1), ('node_1', '=', lv1.node_1), ('level', '=', 2)])
+			
+			for lv2 in lv2_list:
+				g = {}
+				g['display'] = lv2.display
+				g['name'] = lv2.name
+				g['description'] = lv2.description
+
+				lv3_list = http.request.env['i4s.data.item'].sudo().search([('datagroupid', '=', 1), ('node_2', '=', lv2.node_2), ('level', '=', 3)])
+				g['questions'] = lv3_list
+
+				groups.append(g)
+
+			r['groups'] = groups
+
+			results.append(r)
+
+		return http.request.render('i4survey.i4s_homepage', {
+			'results': results
+		})
