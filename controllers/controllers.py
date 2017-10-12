@@ -56,7 +56,7 @@ class i4survey(http.Controller):
 				})
 
 			http.request.env['crm.lead'].sudo().create({
-				'name' : ten_doanhnghiep,
+				'name' : 'Đánh giá DN du lịch',
 				'partner_name' : ten_doanhnghiep,
 				'email_from' : email,
 				'street' : diachi,
@@ -107,10 +107,35 @@ class i4survey(http.Controller):
 
 			r['groups'] = groups
 
-			
+			total_all = total_all / len(lv2_list)
+			r['total_all'] = total_all
+			comment = ''
+			comments = http.request.env['i4s.comment'].sudo().search([('data_item_id', '=', lv1.id)])
+			if comments:
+				if total_all > 0 and total_all <= 0.5:
+					comment = comments['c_00_05']
+				elif total_all > 0.5 and total_all <= 1:
+					comment = comments['c_05_10']
+				elif total_all > 1 and total_all <= 1.5:
+					comment = comments['c_10_15']
+				elif total_all > 1.5 and total_all <= 2:
+					comment = comments['c_15_20']
+				elif total_all > 2 and total_all <= 2.5:
+					comment = comments['c_20_25']
+				elif total_all > 2.5 and total_all <= 3:
+					comment = comments['c_25_30']
+				elif total_all > 3 and total_all <= 3.5:
+					comment = comments['c_30_35']
+				elif total_all > 3.5 and total_all <= 4:
+					comment = comments['c_35_40']
+				elif total_all > 4 and total_all <= 4.5:
+					comment = comments['c_40_45']
+				elif total_all > 4.5 and total_all <= 5:
+					comment = comments['c_45_50']
+			r['comment'] = comment
+
 			ta = {}
 			ta['name'] = lv1.name
-			total_all = total_all / len(lv2_list)
 			#_logger.info('-------------total_all---------------: ' + str(round(total_all,2)))
 			ta['total_all'] = round(total_all,2)
 			tabval.append(ta)

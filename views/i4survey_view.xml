@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <odoo>
     <template id="i4s_result" name="Phiếu khảo sát">
-        <t t-call="website.layout">
+        <t t-call="i4survey.i4s_homepage">
             <div class="container-fluid">
                 <div id="survey-wizard" class="wizard-root">
                     <ul>
@@ -112,6 +112,7 @@
                         </div>
                         <t t-foreach="results" t-as="r">
                             <div class="tab-pane" t-att-id="'tab' + str(r_index + 2)">
+                                <p t-esc="r['comment']"/>
                                 <input type="hidden" t-att-value="'tab' + str(r_index + 2)" class="iTab"/>
                                 <input type="hidden" t-att-value="r['name']" class="nameChart"/>
                                 <input type="hidden" t-att-value="'container-chart' + str(r['idstr'])" class="idChart"/>

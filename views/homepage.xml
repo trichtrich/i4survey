@@ -178,11 +178,17 @@
 
                                                         <div class="col-md-2 mb-20">
                                                             <select t-att-name="'answer_' + str(q['id'])" class="form-control" form="form-survey">
-                                                                <t t-foreach="q['list_answers']" t-as="a">
+                                                                <option>0</option>
+                                                                <option>1</option>
+                                                                <option>2</option>
+                                                                <option>3</option>
+                                                                <option>4</option>
+                                                                <option>5</option>
+                                                                <!-- <t t-foreach="q['list_answers']" t-as="a">
                                                                     <option t-att-value="a.answer_value">
                                                                         <t t-esc="a.answer_content"/>
                                                                     </option>
-                                                                </t>
+                                                                </t> -->
                                                             </select>
                                                         </div>
                                                     </t>
@@ -311,45 +317,45 @@
                                 <table class="table table-bordered table-striped"> 
                                     <thead> 
                                         <tr> 
-                                            <th class="text-center">Nội dung</th> 
+                                            <th class="text-center w-2">Nội dung</th> 
                                             <th class="text-center">Mô tả</th> 
                                         </tr> 
                                     </thead> 
                                     <tbody> 
                                         <tr> 
-                                            <td>Chiến lược</td>
+                                            <td class="vmiddle">Chiến lược</td>
                                              <td>Lộ trình thực hiện CMCN4.0, Nguồn lực hiện có sẵn để thực hiện, Thích ứng của các mô hình kinh doanh,...</td> 
                                          </tr> 
                                          <tr> 
-                                            <td>Lãnh đạo</td> 
+                                            <td class="vmiddle">Lãnh đạo</td> 
                                             <td>Sẵn sàng của các nhà lãnh đạo, Năng lực quản lý và phương pháp,Có điều phối trung tâm cho CMCN4.0,...</td> 
                                         </tr> 
                                         <tr> 
-                                            <td>Khách hàng</td> 
+                                            <td class="vmiddle">Khách hàng</td> 
                                             <td>Sử dụng dữ liệu khách hàng, Số hóa quy trình bán hàng/dịch vụ, Năng lực truyền thông số đến khách hàng...</td> 
                                         </tr> 
                                         <tr> 
-                                            <td>Sản phẩm</td> 
+                                            <td class="vmiddle">Sản phẩm</td> 
                                             <td>Cá nhân hóa các sản phẩm, Số hóa các sản phẩm, Tích hợp sản phẩm vào các hệ thống khác,...</td> 
                                         </tr> 
                                         <tr> 
-                                            <td>Vận hành</td>
+                                            <td class="vmiddle">Vận hành</td>
                                              <td>Phân cấp quy trình, Mô hình và mô phỏng, Liên ngành, Phối hợp liên ngành,...</td> 
                                          </tr> 
                                          <tr> 
-                                            <td>Văn hóa</td> 
+                                            <td class="vmiddle">Văn hóa</td> 
                                             <td>Chia sẻ tri thức, Sáng tạo mở và sự hợp tác của các công ty, Giá trị của công nghệ thông tin trong công ty,...</td> 
                                         </tr> 
                                         <tr> 
-                                            <td>Con người</td> 
+                                            <td class="vmiddle">Con người</td> 
                                             <td>Năng lực công nghệ thông tin của nhân viên, Sự cởi mở của nhân viên với công nghệ mới, Tự chủ của người lao động,...</td> 
                                         </tr> 
                                         <tr> 
-                                            <td>Chính sách</td> 
+                                            <td class="vmiddle">Chính sách</td> 
                                             <td>Quy định về nhân viên cho CMCN4.0, Phù hợp các tiêu chuẩn công nghệ, Bảo vệ sở hữu trí tuệ,...</td> 
                                         </tr> 
                                         <tr> 
-                                            <td>Công nghệ</td> 
+                                            <td class="vmiddle">Công nghệ</td> 
                                             <td>Có công nghệ thông tin hiện đại, Sử dụng các thiết bị di động, Sử dụng giao tiếp máy tới máy,...</td> 
                                         </tr> 
                                     </tbody> 

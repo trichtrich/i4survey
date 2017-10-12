@@ -178,7 +178,7 @@
 	text-transform: uppercase;
 	font-size: 13px;
 	font-weight: 700;
-	color: #777;
+	color: #fff;
 }
 
 .hearder-home { 
@@ -298,6 +298,18 @@ section {
 .c_disable{
 	pointer-events: none;
     cursor: not-allowed;
+}
+
+#topFixedNavbar1 {
+	background-color: #53a743;
+}
+
+.w-2 {
+	width: 2%;
+}
+
+.vmiddle {
+	vertical-align: middle;
 }
 
 
