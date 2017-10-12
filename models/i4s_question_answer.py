@@ -7,4 +7,5 @@ class question_answer(models.Model):
 
 
 	question_id = fields.Many2one('i4s.data.item')
-	question_answer = fields.Text('Answer')
+	answer_content = fields.Text('Answer content')
+	answer_value = fields.Text('Answer value')
