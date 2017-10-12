@@ -55,10 +55,19 @@ class i4survey(http.Controller):
 					'expected': expected
 				})
 
+			http.request.env['crm.lead'].sudo().create({
+				'name' : ten_doanhnghiep,
+				'partner_name' : ten_doanhnghiep,
+				'email_from' : email,
+				'street' : diachi,
+				'phone' : sodienthoai,
+				'contact_name' : nguoi_daidien
+			})
+
 			#lv2_list = http.request.env['i4s.data.item'].sudo().search([('datagroupid', '=', 1), ('node_1', '=', lv1.node_1), ('level', '=', 2)])
 
-		template = http.request.env.ref('i4survey.doanhnghiep_mail_template')
-		http.request.env['mail.template'].sudo().browse(template.id).send_mail(doanhnghiep.id, force_send=True)
+		#template = http.request.env.ref('i4survey.doanhnghiep_mail_template')
+		#http.request.env['mail.template'].sudo().browse(template.id).send_mail(doanhnghiep.id, force_send=True)
 		return http.request.render('i4survey.i4survey_alert', {
             'message': 'Khảo sát thành công, vui lòng dang nhap he thong để xem kết quả.',
             'type': 'success'
