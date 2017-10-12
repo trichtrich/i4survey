@@ -2,221 +2,244 @@
 <odoo>
     <template id="i4s_homepage" name="Phiếu khảo sát">
         <t t-call="website.layout">
+            <nav class="navbar navbar-default">
+                <div class="container-fluid" style="padding:0">
+                    <div class="navbar-survey">
+
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#topFixedNavbar1" aria-expanded="false">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+
+                        <a class="navbar-brand" href="/">
+                            <img src="/i4survey/static/src/images/logo.png" class="img img-responsive"/>
+                        </a>
+                        <p class="navbar-text hidden-xs" style="color:white;">
+                            Cuộc cách mạng công nghiệp lần thứ 4<br/>
+                            <span>Fourth Industrial Revolution</span>
+                        </p>
+
+                    </div>
+                </div>
+            </nav>
+
             <div class="container-fluid">
-                <!-- <div class="alert alert-success" t-if="message">
-                    <t t-esc="message"/>
-                </div> -->
+                <t t-raw="0">
+                    <div id="survey-wizard" class="wizard-root">
+                        <ul>
+                            <li><a href="#tab1" data-toggle="tab" data-group-title="Thông tin doanh nghiệp">1. Thông tin</a></li>
 
-                <div id="survey-wizard" class="wizard-root">
-                    <ul>
-                        <li><a href="#tab1" data-toggle="tab" data-group-title="Thông tin doanh nghiệp">1. Thông tin</a></li>
+                            <t t-foreach="results" t-as="r">
+                                <li>
+                                    <a t-att-href="'#tab' + str(r_index + 2)" data-toggle="tab" t-att-data-group-title="r['name']">
+                                        <t t-esc="str(r_index + 2) + '. ' + r['name']"/>
+                                    </a>
+                                </li>
+                            </t>
+                        </ul>
 
-                        <t t-foreach="results" t-as="r">
-                            <li>
-                                <a t-att-href="'#tab' + str(r_index + 2)" data-toggle="tab" data-group-title="Chiến lược">
-                                    <t t-esc="str(r_index + 2) + '. ' + r['name']"/>
-                                </a>
-                            </li>
-                        </t>
-                    </ul>
-
-                    <div class="progress progress-striped active">
-                        <div class="progress-bar"></div>
-                    </div>
-
-                    <h4 class="wizard-group-title pull-left"></h4>
-                    <ul class="pager wizard pull-right">
-                        <li class="previous"><a href="javascript:;">Trước</a></li>
-                        <li class="next" ><a href="javascript:;">Sau</a></li>
-                        <li class="finish"><a href="javascript:;">Hoàn thành</a></li>
-                    </ul>
-
-                    <div class="row" id="infoErr" style="display:none">
-                        Bạn phải điền đầy đủ thông tin để sang bước tiếp theo!
-                    </div>
-
-                    <div class="clearfix"></div>
-                    <hr class="wizard-group-title-border"/>
-
-                    <div class="tab-content">
-                        <div class="tab-pane" id="tab1">
-                            <div class="row">
-                                <div class="col-md-5 mb-20">
-                                    <img class="img img-responsive img-survey" src="/i4survey/static/src/images/company-profile.jpg"/>
-                                </div>
-
-                                <form id="form-survey" class="col-md-7 mb-20 form-horizontal form-survey" method="POST" action="/survey">
-                                    <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
-                                    
-                                    <h4 class="title">Thông tin người khảo sát</h4>
-
-                                    <div class="form-group mb-7">
-                                        <div class="col-md-4 mb-15">
-                                            <label class="control-label required">Họ tên</label>
-                                            <input id="nguoi_daidien" name="nguoi_daidien" type="text" class="form-control" required="true" onblur="onFocusVal(this)" />
-                                            <p id="nguoi_daidienErr" style="display:none;">Họ tên không được để trống!</p>
-                                        </div>
-
-                                        
-
-                                        <div class="col-md-4 mb-15">
-                                            <label class="control-label required">Số điện thoại</label>
-                                            <input id="sodienthoai" name="sodienthoai" type="text" class="form-control" required="true" onblur="onFocusVal(this)" />
-                                            <p id="sodienthoaiErr" style="display:none;">Số điện thoại không được để trống!</p>
-                                        </div>
-
-                                        <div class="col-md-4 mb-15">
-                                            <label class="control-label required">Email</label>
-                                            <input id="email" name="email" type="email" class="form-control" required="true" onblur="onFocusVal(this)"/>
-                                            <p id="emailErr" style="display:none;">Email không được để trống!</p>
-                                        </div>
-                                    </div>
-
-                                    <h4 class="title">Thông tin doanh nghiệp khảo sát</h4>
-
-                                    <div class="form-group mb-0">
-                                        <div class="col-md-6 mb-15">
-                                            <label class="control-label required">Tên doanh nghiệp</label>
-                                            <input id="ten_doanhnghiep" name="ten_doanhnghiep" type="text" class="form-control" required="true" onblur="onFocusVal(this)"/>
-                                            <p id="ten_doanhnghiepErr" style="display:none;">Tên doanh nghiệp không được để trống!</p>
-                                        </div>
-
-                                        <div class="col-md-6 mb-15">
-                                            <label class="control-label required">Lĩnh vực hoạt động chính</label>
-                                            <select name="linhvucid" class="form-control">
-                                                <option value="01">Công nghệ</option>
-                                                <option value="02">Nông nghiệp</option>
-                                                <option value="03">Du lịch</option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group mb-0">
-                                        <div class="col-md-6 mb-15">
-                                            <label class="control-label required">Số nhân viên</label>
-                                            <select name="sonhanvien" class="form-control">
-                                                <option value="01">Dưới 20 nhân viên</option>
-                                                <option value="02">Từ 20 đến dưới 100 nhân viên</option>
-                                                <option value="03">Từ 100 đến dưới 250 nhân viên</option>
-                                                <option value="04">Từ 250 đến dưới 500 nhần viên</option>
-                                                <option value="05">Trên 500 nhân viên</option>
-                                            </select>
-                                        </div>
-
-                                        <div class="col-md-6 mb-15">
-                                            <label class="control-label required">Doanh thu hàng năm</label>
-                                            <select name="doanhthu" class="form-control">
-                                                <option value="01">Dưới 10 triệu dollars</option> 
-                                                <option value="02">Từ 10 triệu đến dưới 50 triệu dollars</option> 
-                                                <option value="03">Từ 50 triệu đến dưới 100 triệu dollars</option> 
-                                                <option value="04">Từ 100 triệu đến dưới 250 triệu dollars</option> 
-                                                <option value="05">Từ 250 triệu đến dưới 500 triệu dollars</option> 
-                                                <option value="06">Trên 500 triệu dollars</option> 
-                                                <option value="07">Không xác định</option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <div class="col-md-12">
-                                            <label class="control-label required">Địa chỉ</label>
-                                            <input id="diachi" name="diachi" type="text" class="form-control" required="true" onblur="onFocusVal(this)" />
-                                            <p id="diachiErr" style="display:none;">Địa chỉ không được để trống!</p>
-                                        </div>
-                                    </div>
-                                </form>
-                                <script type="text/javascript" src="/i4survey/static/src/js/validate.js"></script>
-                            </div>
+                        <div class="progress progress-striped active">
+                            <div class="progress-bar"></div>
                         </div>
 
-                        <t t-foreach="results" t-as="r">
-                            <div class="tab-pane" t-att-id="'tab' + str(r_index + 2)">
+                        <h4 class="wizard-group-title pull-left"></h4>
+                        <ul class="pager wizard pull-right">
+                            <li class="previous"><a href="javascript:;">Trước</a></li>
+                            <li class="next" ><a href="javascript:;">Sau</a></li>
+                            <li class="finish"><a href="javascript:;">Hoàn thành</a></li>
+                        </ul>
+
+                        <div class="clearfix"></div>
+                        <hr class="wizard-group-title-border"/>
+
+                        <div class="tab-content">
+                            <div class="tab-pane" id="tab1">
                                 <div class="row">
                                     <div class="col-md-5 mb-20">
-                                        <img class="img img-responsive img-survey" t-att-src="r['image']"/>
+                                        <img class="img img-responsive img-survey" src="/i4survey/static/src/images/company-profile.jpg"/>
                                     </div>
 
-                                    <div class="col-md-7 mb-20">
-                                        <t t-foreach="r['groups']" t-as="g">
-                                            <div class="row group">
-                                                <div class="col-md-1 mb-20">
-                                                    <div class="group-number">
-                                                        <t t-raw="g_index + 1"/>
-                                                    </div>
-                                                </div>
+                                    <form id="form-survey" class="col-md-7 mb-20 form-horizontal form-survey" method="POST" action="/survey">
+                                        <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                                        
+                                        <h4 class="title">Thông tin người khảo sát</h4>
 
-                                                <div class="col-md-10 mb-20">
-                                                    <div class="group-title">
-                                                        <t t-esc="g['display']"/>
-                                                    </div>
-
-                                                    <div class="group-description">
-                                                        <t t-esc="g['description']"/>
-                                                    </div>
-                                                </div>
-
-                                                <t t-foreach="g['questions']" t-as="q">
-                                                    <div class="col-md-offset-1 col-md-8 mb-20">
-                                                        <t t-esc="q['name']"/>
-                                                    </div>
-
-                                                    <div class="col-md-2 mb-20">
-                                                        <select t-att-name="'answer_' + str(q.id)" class="form-control" form="form-survey">
-                                                            <option value="0">0</option>
-                                                            <option value="1">1</option>
-                                                            <option value="2">2</option>
-                                                            <option value="3">3</option>
-                                                            <option value="4">4</option>
-                                                            <option value="5">5</option>
-                                                        </select>
-                                                    </div>
-                                                </t>
+                                        <div class="form-group mb-7">
+                                            <div class="col-md-4 mb-15">
+                                                <label class="control-label required">Họ tên</label>
+                                                <input id="nguoi_daidien" name="nguoi_daidien" type="text" class="form-control" required="true" onblur="onFocusVal(this)" />
+                                                <p id="nguoi_daidienErr" style="display:none;">Họ tên không được để trống!</p>
                                             </div>
-                                        </t>
 
-                                        <!-- <t t-foreach="r['groups']" t-as="g">
-                                            <h4 class="title">
-                                                <t t-esc="g['display']"/>
-                                                <div class="description">
-                                                    <t t-esc="g['description']"/>
-                                                </div>
-                                            </h4>
+                                            
 
-                                            <t t-foreach="g['questions']" t-as="q">
-                                                <div class="row question">
-                                                    <div class="col-md-1 mb-20">
-                                                        <div class="question-number">
-                                                            <t t-raw="q_index + 1"/>
-                                                        </div>
-                                                    </div>
+                                            <div class="col-md-4 mb-15">
+                                                <label class="control-label required">Số điện thoại</label>
+                                                <input id="sodienthoai" name="sodienthoai" type="text" class="form-control" required="true" onblur="onFocusVal(this)" />
+                                                <p id="sodienthoaiErr" style="display:none;">Số điện thoại không được để trống!</p>
+                                            </div>
 
-                                                    <div class="col-md-8 mb-20">
-                                                        <div class="question-content">
-                                                            <t t-esc="q.name"/>
-                                                        </div>
-                                                    </div>
+                                            <div class="col-md-4 mb-15">
+                                                <label class="control-label required">Email</label>
+                                                <input id="email" name="email" type="email" class="form-control" required="true" onblur="onFocusVal(this)"/>
+                                                <p id="emailErr" style="display:none;">Email không được để trống!</p>
+                                            </div>
+                                        </div>
 
-                                                    <div class="col-md-2 mb-20">
-                                                        <select t-att-name="'answer_' + str(q.id)" class="form-control" form="form-survey">
-                                                            <option value="0">0</option>
-                                                            <option value="1">1</option>
-                                                            <option value="2">2</option>
-                                                            <option value="3">3</option>
-                                                            <option value="4">4</option>
-                                                            <option value="5">5</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </t>
-                                        </t> -->
-                                    </div>
+                                        <h4 class="title">Thông tin doanh nghiệp khảo sát</h4>
+
+                                        <div class="form-group mb-0">
+                                            <div class="col-md-6 mb-15">
+                                                <label class="control-label required">Tên doanh nghiệp</label>
+                                                <input id="ten_doanhnghiep" name="ten_doanhnghiep" type="text" class="form-control" required="true" onblur="onFocusVal(this)"/>
+                                                <p id="ten_doanhnghiepErr" style="display:none;">Tên doanh nghiệp không được để trống!</p>
+                                            </div>
+
+                                            <div class="col-md-6 mb-15">
+                                                <label class="control-label required">Lĩnh vực hoạt động chính</label>
+                                                <select name="linhvucid" class="form-control">
+                                                    <option value="01">Công nghệ</option>
+                                                    <option value="02">Nông nghiệp</option>
+                                                    <option value="03">Du lịch</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group mb-0">
+                                            <div class="col-md-6 mb-15">
+                                                <label class="control-label required">Số nhân viên</label>
+                                                <select name="sonhanvien" class="form-control">
+                                                    <option value="01">Dưới 20 nhân viên</option>
+                                                    <option value="02">Từ 20 đến dưới 100 nhân viên</option>
+                                                    <option value="03">Từ 100 đến dưới 250 nhân viên</option>
+                                                    <option value="04">Từ 250 đến dưới 500 nhần viên</option>
+                                                    <option value="05">Trên 500 nhân viên</option>
+                                                </select>
+                                            </div>
+
+                                            <div class="col-md-6 mb-15">
+                                                <label class="control-label required">Doanh thu hàng năm</label>
+                                                <select name="doanhthu" class="form-control">
+                                                    <option value="01">Dưới 10 triệu dollars</option> 
+                                                    <option value="02">Từ 10 triệu đến dưới 50 triệu dollars</option> 
+                                                    <option value="03">Từ 50 triệu đến dưới 100 triệu dollars</option> 
+                                                    <option value="04">Từ 100 triệu đến dưới 250 triệu dollars</option> 
+                                                    <option value="05">Từ 250 triệu đến dưới 500 triệu dollars</option> 
+                                                    <option value="06">Trên 500 triệu dollars</option> 
+                                                    <option value="07">Không xác định</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <div class="col-md-12">
+                                                <label class="control-label required">Địa chỉ</label>
+                                                <input id="diachi" name="diachi" type="text" class="form-control" required="true" onblur="onFocusVal(this)" />
+                                                <p id="diachiErr" style="display:none;">Địa chỉ không được để trống!</p>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <script type="text/javascript" src="/i4survey/static/src/js/validate.js"></script>
                                 </div>
                             </div>
-                        </t>
+
+                            <t t-foreach="results" t-as="r">
+                                <div class="tab-pane" t-att-id="'tab' + str(r_index + 2)">
+                                    <div class="row">
+                                        <div class="col-md-5 mb-20">
+                                            <img class="img img-responsive img-survey" t-att-src="r['image']"/>
+                                        </div>
+
+                                        <div class="col-md-7 mb-20">
+                                            <t t-foreach="r['groups']" t-as="g">
+                                                <div class="row group">
+                                                    <div class="col-md-1 mb-20">
+                                                        <div class="group-number">
+                                                            <t t-raw="g_index + 1"/>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-10 mb-20">
+                                                        <div class="group-title">
+                                                            <t t-esc="g['display']"/>
+                                                        </div>
+
+                                                        <div class="group-description">
+                                                            <t t-esc="g['description']"/>
+                                                        </div>
+                                                    </div>
+
+                                                    <t t-foreach="g['questions']" t-as="q">
+                                                        <div class="col-md-offset-1 col-md-8 mb-20">
+                                                            <t t-esc="q['name']"/>
+                                                        </div>
+
+                                                        <div class="col-md-2 mb-20">
+                                                            <select t-att-name="'answer_' + str(q.id)" class="form-control" form="form-survey">
+                                                                <option value="0">0</option>
+                                                                <option value="1">1</option>
+                                                                <option value="2">2</option>
+                                                                <option value="3">3</option>
+                                                                <option value="4">4</option>
+                                                                <option value="5">5</option>
+                                                            </select>
+                                                        </div>
+                                                    </t>
+                                                </div>
+                                            </t>
+
+                                            <!-- <t t-foreach="r['groups']" t-as="g">
+                                                <h4 class="title">
+                                                    <t t-esc="g['display']"/>
+                                                    <div class="description">
+                                                        <t t-esc="g['description']"/>
+                                                    </div>
+                                                </h4>
+
+                                                <t t-foreach="g['questions']" t-as="q">
+                                                    <div class="row question">
+                                                        <div class="col-md-1 mb-20">
+                                                            <div class="question-number">
+                                                                <t t-raw="q_index + 1"/>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-md-8 mb-20">
+                                                            <div class="question-content">
+                                                                <t t-esc="q.name"/>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-md-2 mb-20">
+                                                            <select t-att-name="'answer_' + str(q.id)" class="form-control" form="form-survey">
+                                                                <option value="0">0</option>
+                                                                <option value="1">1</option>
+                                                                <option value="2">2</option>
+                                                                <option value="3">3</option>
+                                                                <option value="4">4</option>
+                                                                <option value="5">5</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </t>
+                                            </t> -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </t>
+
+                            <ul class="pager wizard pull-right">
+                                <li class="previous"><a href="javascript:;">Trước</a></li>
+                                <li class="next" ><a href="javascript:;">Sau</a></li>
+                                <li class="finish"><a href="javascript:;">Hoàn thành</a></li>
+                            </ul>
+                            
+                        </div>
                         
                     </div>
-                    
-                </div>
+                </t>
             </div>
         </t>
     </template>
@@ -237,12 +260,6 @@
                                 <li>
                                     <a t-attf-href="/i4survey">
                                         <i class="MR5 fa fa-edit" aria-hidden="true"></i>Tự đánh giá 
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a t-attf-href="/web/login">
-                                        <i class="MR5 fa fa-sign-in" aria-hidden="true"></i>Đăng nhập
                                     </a>
                                 </li>
                             </ul>

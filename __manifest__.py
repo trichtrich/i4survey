@@ -33,6 +33,7 @@
         'views/i4survey_mail_template.xml',
         'views/result_message.xml',
         'views/data_group.xml',
+        'views/thank_you.xml'
     ],
     # only loaded in demonstration mode
     'demo': [
