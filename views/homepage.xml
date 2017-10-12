@@ -177,7 +177,7 @@
                                                         </div>
 
                                                         <div class="col-md-2 mb-20">
-                                                            <select t-att-name="'answer_' + str(q.id)" class="form-control" form="form-survey">
+                                                            <select t-att-name="'answer_' + str(q['id'])" class="form-control" form="form-survey">
                                                                 <t t-foreach="q['list_answers']" t-as="a">
                                                                     <option t-att-value="a.answer_value">
                                                                         <t t-esc="a.answer_content"/>
