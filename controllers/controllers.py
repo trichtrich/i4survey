@@ -143,7 +143,15 @@ class i4survey(http.Controller):
 				g['description'] = lv2.description
 
 				lv3_list = http.request.env['i4s.data.item'].sudo().search([('datagroupid', '=', 1), ('node_2', '=', lv2.node_2), ('level', '=', 3)])
-				g['questions'] = lv3_list
+				questions = lv3_list
+
+				for a in lv3_list:
+					list_answers = http.request.env['i4s.data.item'].sudo().search([('question_id', '=', a.id)
+					ans = {}
+					ans['list_answers'] = list_answers
+					questions.append(ans)
+
+				g['questions'] = questions
 
 				groups.append(g)
 
