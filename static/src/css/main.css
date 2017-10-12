@@ -300,10 +300,6 @@ section {
     cursor: not-allowed;
 }
 
-#topFixedNavbar1 {
-	background-color: #53a743;
-}
-
 .w-2 {
 	width: 2%;
 }
@@ -312,4 +308,7 @@ section {
 	vertical-align: middle;
 }
 
+.navbar-default .navbar-survey .navbar-nav > li > a {
+	color: #fff;
+}
 

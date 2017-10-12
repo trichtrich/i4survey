@@ -28,7 +28,7 @@
                         <div id="tab1">
                             <h4 class="wizard-group-title pull-left">Biểu đồ tổng hợp</h4>
                             <div class="clearfix"></div>
-                            <hr class="wizard-group-title-border">
+                            <hr class="wizard-group-title-border"/>
                             <div class="row">
                                 <t t-foreach="resultsTab1" t-as="z">
                                     <input type="hidden" value="Biểu đồ tổng hợp" id="nameChart"/>
@@ -120,7 +120,7 @@
                                     <t t-esc="r['name']"/>
                                 </h4>
                                 <div class="clearfix"></div>
-                                <hr class="wizard-group-title-border">
+                                <hr class="wizard-group-title-border"/>
                                 <input type="hidden" t-att-value="'tab' + str(r_index + 2)" class="iTab"/>
                                 <input type="hidden" t-att-value="r['name']" class="nameChart"/>
                                 <input type="hidden" t-att-value="'container-chart' + str(r['idstr'])" class="idChart"/>

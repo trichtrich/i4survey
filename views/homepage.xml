@@ -251,7 +251,24 @@
 
     <template id="i4s_home" name="Khảo sát chuyển đổi số">
         <t t-call="website.layout">
-            <div class="container-fluid contentL">
+            <nav class="navbar navbar-default">
+                <div class="container-fluid" style="padding:0">
+                    <div class="navbar-survey">
+
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#topFixedNavbar1" aria-expanded="false">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+
+                        <a class="navbar-brand" href="/">
+                            <img src="/i4survey/static/src/images/logo.png" class="img img-responsive"/>
+                        </a>
+                        <p class="navbar-text hidden-xs" style="color:white;">
+                            Cuộc cách mạng công nghiệp lần thứ 4<br/>
+                            <span>Fourth Industrial Revolution</span>
+                        </p>
 
                         <!-- Collect the nav links, forms, and other content for toggling -->
                         <div class="collapse navbar-collapse" id="topFixedNavbar1">
@@ -259,6 +276,12 @@
                                 <li>
                                     <a href="#about">
                                         <i class="MR5 fa fa-file-text-o" aria-hidden="true"></i>giới thiệU
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="#services">
+                                        <i class="MR5 fa fa-file-text-o" aria-hidden="true"></i>giới thiệU công cụ đánh giá
                                     </a>
                                 </li>
                                 
@@ -270,6 +293,11 @@
                             </ul>
                         </div>
 
+                    </div>
+                </div>
+            </nav>
+
+            <div class="container-fluid contentL">
                 <header class="hearder-home"> 
                     <div class="header-content"> 
                         <div class="header-content-inner"> 
