@@ -28,4 +28,12 @@ $(document).ready(function() {
         $('#form-survey').submit();
     });
 
+    jQuery.fn.onFocusVal = function(a) {
+        if(a==null){
+            $('#hoTenErr').css('display','inline');
+        }
+        console.log('1');
+    }
+
+
 });

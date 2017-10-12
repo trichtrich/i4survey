@@ -59,6 +59,26 @@ var bootstrapWizardCreate = function(element, options) {
 	};
 
 	this.next = function(e) {
+
+		var nguoi_daidien = $('#nguoi_daidien').val();
+    	var sodienthoai = $('#sodienthoai').val();
+    	var email = $('#email').val();
+    	var diachi = $('#diachi').val();
+    	var ten_doanhnghiep = $('#ten_doanhnghiep').val();
+
+    	var arrValue = [];
+    	arrValue.push(nguoi_daidien,sodienthoai,email,diachi,ten_doanhnghiep);
+
+
+    	$.each(arrValue, function( index, value ) {
+        console.log( index + ": " + value );
+	        if(value==''){
+	            $('#infoErr').css('display','inline');
+	            return false;
+	        }
+	       
+    	});
+
 		// If we clicked the last then dont activate this
 		if(element.hasClass('last')) {
 			return false;

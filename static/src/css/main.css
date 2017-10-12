@@ -64,9 +64,10 @@
 
 .navbar-survey {
 	background: url(/i4survey/static/src/images/bg_header.png) no-repeat right top #0e76bc;
-	min-height: 80px;
+	min-height: 100px;
 	color: #fff;
 	border-radius: 0;
+	width: 100%;
 }
 
 .navbar-survey .navbar-brand {
@@ -138,6 +139,10 @@
 
 #wrapwrap > * {
     display: block;
+}
+
+#wrapwrap > main {
+    height: auto;
 }
 
 #navigation {
@@ -222,9 +227,7 @@
     color: #fff;
 }
 
-section {
-    padding: 100px 0;
-}
+
 
 .img-responsive {
     display: block;
@@ -259,3 +262,28 @@ table {
     border-collapse: collapse;
     width: 100%;
 }
+
+.contentL{
+	margin-top: -20px;
+	padding-left: 0px;
+	padding-right: 0px;
+}
+
+
+.navbar-default{
+	border-bottom: solid 1px #fff;
+}
+.navbar-default .navbar-brand, .navbar-default .navbar-brand:hover{color: #fff; text-transform: uppercase;font-size: 24px;text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);}
+.navbar-default .navbar-nav > li > a{color: #777;text-transform: uppercase;    font-size: 15px;}
+.navbar-default .navbar-nav > li > a:hover{color: #0e76bc}
+.MR5{margin-right: 5px;}
+.MR10{margin-right: 10px;}
+.navbar-default .navbar-nav > li > a:hover{color: #0e76bc;}
+.MB0{margin-bottom: 0;}
+
+.c_disable{
+	pointer-events: none;
+    cursor: not-allowed;
+}
+
+

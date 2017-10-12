@@ -3,43 +3,32 @@
     <data>
         <template id="stem_header" inherit_id="website.layout" name="STEM Header">
             <xpath expr="//header" position="replace">
-                <header class="navbar navbar-survey">
-                    <div class="container-fluid">
-                        <div class="navbar-header">
+                <nav class="navbar navbar-default">
+                    <div class="container-fluid" style="padding:0">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-survey">
+
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#topFixedNavbar1" aria-expanded="false">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+
                             <a class="navbar-brand" href="/">
                                 <img src="/i4survey/static/src/images/logo.png" class="img img-responsive"/>
                             </a>
-                            <p class="navbar-text hidden-xs">
+                            <p class="navbar-text hidden-xs" style="color:white;">
                                 Cuộc cách mạng công nghiệp lần thứ 4<br/>
                                 <span>Fourth Industrial Revolution</span>
                             </p>
+
                         </div>
+
+                 <!-- /.navbar-collapse -->
                     </div>
-                </header>
-                <nav class="navbar site-navigation" id="navigation" role="navigation">
-                    <div class="container">
-                        <a class="menu-bar" data-toggle="collapse" href="#defaultNavbar1">
-                            <span class="bars"></span>            
-                        </a>
-                        <div class="collapse nav-collapse" id="defaultNavbar1">
-                            <ul class="nav navbar-nav navbar-right">
-                                <li>
-                                    <a class="text-trang hover" href="/">Trang chủ</a>
-                                </li>
-                                <li>
-                                    <a class="bt-dangnhap MR10" t-attf-href="/i4survey">
-                                        Tự đánh giá
-                                    </a>
-                                </li>
-                                <li groups="base.group_public">
-                                    <a class="bt-dangnhap MR10" t-attf-href="/web/login">
-                                        Đăng nhập
-                                    </a>
-                                </li>
-                            </ul>
-                        </div> 
-                    </div> 
-                </nav>
+    <!-- /.container-fluid -->
+                </nav><!--end nav-->
             </xpath>
         </template>
 

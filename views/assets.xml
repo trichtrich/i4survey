@@ -9,6 +9,7 @@
                 <script type="text/javascript" src="/i4survey/static/src/js/highcharts.js"></script>
                 <script type="text/javascript" src="/i4survey/static/src/js/highcharts-more.js"></script>
                 <script type="text/javascript" src="/i4survey/static/src/js/exporting.js"></script>
+                
             </xpath>
         </template>
     </data>

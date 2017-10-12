@@ -28,6 +28,7 @@
         'views/assets.xml',
         'views/header.xml',
         'views/homepage.xml',
+        'views/icon.xml',
         'views/i4survey_view.xml',
         'views/i4survey_mail_template.xml',
         'views/result_message.xml',

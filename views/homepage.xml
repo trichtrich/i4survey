@@ -27,9 +27,14 @@
                     <h4 class="wizard-group-title pull-left"></h4>
                     <ul class="pager wizard pull-right">
                         <li class="previous"><a href="javascript:;">Trước</a></li>
-                        <li class="next"><a href="javascript:;">Sau</a></li>
+                        <li class="next" ><a href="javascript:;">Sau</a></li>
                         <li class="finish"><a href="javascript:;">Hoàn thành</a></li>
                     </ul>
+
+                    <div class="row" id="infoErr" style="display:none">
+                        Bạn phải điền đầy đủ thông tin để sang bước tiếp theo!
+                    </div>
+
                     <div class="clearfix"></div>
                     <hr class="wizard-group-title-border"/>
 
@@ -48,17 +53,22 @@
                                     <div class="form-group mb-7">
                                         <div class="col-md-4 mb-15">
                                             <label class="control-label required">Họ tên</label>
-                                            <input name="nguoi_daidien" type="text" class="form-control"/>
+                                            <input id="nguoi_daidien" name="nguoi_daidien" type="text" class="form-control" required="true" onblur="onFocusVal(this)" />
+                                            <p id="nguoi_daidienErr" style="display:none;">Họ tên không được để trống!</p>
                                         </div>
+
+                                        
 
                                         <div class="col-md-4 mb-15">
                                             <label class="control-label required">Số điện thoại</label>
-                                            <input name="sodienthoai" type="text" class="form-control"/>
+                                            <input id="sodienthoai" name="sodienthoai" type="text" class="form-control" required="true" onblur="onFocusVal(this)" />
+                                            <p id="sodienthoaiErr" style="display:none;">Số điện thoại không được để trống!</p>
                                         </div>
 
                                         <div class="col-md-4 mb-15">
                                             <label class="control-label required">Email</label>
-                                            <input name="email" type="email" class="form-control"/>
+                                            <input id="email" name="email" type="email" class="form-control" required="true" onblur="onFocusVal(this)"/>
+                                            <p id="emailErr" style="display:none;">Email không được để trống!</p>
                                         </div>
                                     </div>
 
@@ -67,13 +77,13 @@
                                     <div class="form-group mb-0">
                                         <div class="col-md-6 mb-15">
                                             <label class="control-label required">Tên doanh nghiệp</label>
-                                            <input name="ten_doanhnghiep" type="text" class="form-control"/>
+                                            <input id="ten_doanhnghiep" name="ten_doanhnghiep" type="text" class="form-control" required="true" onblur="onFocusVal(this)"/>
+                                            <p id="ten_doanhnghiepErr" style="display:none;">Tên doanh nghiệp không được để trống!</p>
                                         </div>
 
                                         <div class="col-md-6 mb-15">
                                             <label class="control-label required">Lĩnh vực hoạt động chính</label>
                                             <select name="linhvucid" class="form-control">
-                                                <option></option>
                                                 <option value="01">Công nghệ</option>
                                                 <option value="02">Nông nghiệp</option>
                                                 <option value="03">Du lịch</option>
@@ -85,7 +95,6 @@
                                         <div class="col-md-6 mb-15">
                                             <label class="control-label required">Số nhân viên</label>
                                             <select name="sonhanvien" class="form-control">
-                                                <option></option>
                                                 <option value="01">Dưới 20 nhân viên</option>
                                                 <option value="02">Từ 20 đến dưới 100 nhân viên</option>
                                                 <option value="03">Từ 100 đến dưới 250 nhân viên</option>
@@ -97,7 +106,6 @@
                                         <div class="col-md-6 mb-15">
                                             <label class="control-label required">Doanh thu hàng năm</label>
                                             <select name="doanhthu" class="form-control">
-                                                <option></option> 
                                                 <option value="01">Dưới 10 triệu dollars</option> 
                                                 <option value="02">Từ 10 triệu đến dưới 50 triệu dollars</option> 
                                                 <option value="03">Từ 50 triệu đến dưới 100 triệu dollars</option> 
@@ -112,10 +120,12 @@
                                     <div class="form-group">
                                         <div class="col-md-12">
                                             <label class="control-label required">Địa chỉ</label>
-                                            <input name="diachi" type="text" class="form-control"/>
+                                            <input id="diachi" name="diachi" type="text" class="form-control" required="true" onblur="onFocusVal(this)" />
+                                            <p id="diachiErr" style="display:none;">Địa chỉ không được để trống!</p>
                                         </div>
                                     </div>
                                 </form>
+                                <script type="text/javascript" src="/i4survey/static/src/js/validate.js"></script>
                             </div>
                         </div>
 
@@ -211,9 +221,33 @@
         </t>
     </template>
 
-    <template id="i4s_home" name="Trang chủ">
+    <template id="i4s_home" name="Khảo sát chuyển đổi số">
         <t t-call="website.layout">
-            <div class="container-fluid">
+            <div class="container-fluid contentL">
+
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse" id="topFixedNavbar1">
+                            <ul class="nav navbar-nav navbar-right">
+                                <li>
+                                    <a href="#about">
+                                        <i class="MR5 fa fa-file-text-o" aria-hidden="true"></i>giới thiệU
+                                    </a>
+                                </li>
+                                
+                                <li>
+                                    <a t-attf-href="/i4survey">
+                                        <i class="MR5 fa fa-edit" aria-hidden="true"></i>Tự đánh giá 
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a t-attf-href="/web/login">
+                                        <i class="MR5 fa fa-sign-in" aria-hidden="true"></i>Đăng nhập
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+
                 <header class="hearder-home"> 
                     <div class="header-content"> 
                         <div class="header-content-inner"> 
@@ -306,11 +340,20 @@
                                 </table> 
                             </div> 
                             <div class="col-md-12 text-center">
+                              
+                            </div> 
+                            <div class="col-md-12 text-center">
+                               
+                            </div> 
+
+                            <div class="col-md-12 text-center">
                                 <a href="/i4survey" class="btn btn-primary btn-xl">Tự đánh giá</a>
                             </div> 
                         </div> 
                     </div>
                 </section>
+
+
                 <section id="contact"> 
                     <div class="container"> 
                         <div class="row"> 
