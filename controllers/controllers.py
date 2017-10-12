@@ -60,7 +60,7 @@ class i4survey(http.Controller):
 		template = http.request.env.ref('i4survey.doanhnghiep_mail_template')
 		http.request.env['mail.template'].sudo().browse(template.id).send_mail(doanhnghiep.id, force_send=True)
 		return http.request.render('i4survey.i4survey_alert', {
-            'message': 'Khảo sát thành công, vui lòng check email để xem kết quả.',
+            'message': 'Khảo sát thành công, vui lòng dang nhap he thong để xem kết quả.',
             'type': 'success'
         })
 
