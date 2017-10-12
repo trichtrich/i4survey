@@ -80,6 +80,7 @@ class i4survey(http.Controller):
 		results = []
 		tabval = []
 		total_all = 0
+		tab1_total_all = 0
 		lv1_list = http.request.env['i4s.data.item'].sudo().search([('datagroupid', '=', 1), ('level', '=', 1)], order='displayorder asc')
 		for lv1 in lv1_list:
 			r = {}
@@ -108,6 +109,8 @@ class i4survey(http.Controller):
 			r['groups'] = groups
 
 			total_all = total_all / len(lv2_list)
+			total_all = round(total_all, 2)
+			tab1_total_all += total_all
 			r['total_all'] = total_all
 			comment = ''
 			comments = http.request.env['i4s.comment'].sudo().search([('data_item_id', '=', lv1.id)])
@@ -137,13 +140,43 @@ class i4survey(http.Controller):
 			ta = {}
 			ta['name'] = lv1.name
 			#_logger.info('-------------total_all---------------: ' + str(round(total_all,2)))
-			ta['total_all'] = round(total_all,2)
+			ta['total_all'] = total_all
 			tabval.append(ta)
 
 			results.append(r)
+
+		tab1_total_all = tab1_total_all / len(lv1_list)
+		tab1_total_all = round(tab1_total_all, 2)
+		tab1_comment = ''
+		tab1_comments = http.request.env['i4s.comment'].sudo().search([('data_item_id', '=', 0)])
+		if tab1_comments:
+			if tab1_total_all == 0:
+				tab1_comment = tab1_comments['c_00']
+			if tab1_total_all > 0 and tab1_total_all <= 0.5:
+				tab1_comment = tab1_comments['c_00_05']
+			elif tab1_total_all > 0.5 and tab1_total_all <= 1:
+				tab1_comment = tab1_comments['c_05_10']
+			elif tab1_total_all > 1 and tab1_total_all <= 1.5:
+				tab1_comment = tab1_comments['c_10_15']
+			elif tab1_total_all > 1.5 and tab1_total_all <= 2:
+				tab1_comment = tab1_comments['c_15_20']
+			elif tab1_total_all > 2 and tab1_total_all <= 2.5:
+				tab1_comment = tab1_comments['c_20_25']
+			elif tab1_total_all > 2.5 and tab1_total_all <= 3:
+				tab1_comment = tab1_comments['c_25_30']
+			elif tab1_total_all > 3 and tab1_total_all <= 3.5:
+				tab1_comment = tab1_comments['c_30_35']
+			elif tab1_total_all > 3.5 and tab1_total_all <= 4:
+				tab1_comment = tab1_comments['c_35_40']
+			elif tab1_total_all > 4 and tab1_total_all <= 4.5:
+				tab1_comment = tab1_comments['c_40_45']
+			elif tab1_total_all > 4.5 and tab1_total_all <= 5:
+				tab1_comment = tab1_comments['c_45_50']
+
 		data = {
 			'results': results,
-			'resultsTab1': tabval
+			'resultsTab1': tabval,
+			'tab1_comment': tab1_comment
 		}
 
 		return http.request.render('i4survey.i4s_result', data)

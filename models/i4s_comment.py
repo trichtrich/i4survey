@@ -6,6 +6,7 @@ class i4s_comment(models.Model):
     _name = 'i4s.comment'
     
     data_item_id = fields.Integer(string='Mã danh mục')
+    c_00 = fields.Char(string='0')
     c_00_05 = fields.Char(string='0 -> 0.5')
     c_05_10 = fields.Char(string='0.5 -> 1')
     c_10_15 = fields.Char(string='1 -> 1.5')
