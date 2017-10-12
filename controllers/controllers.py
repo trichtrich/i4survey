@@ -69,7 +69,7 @@ class i4survey(http.Controller):
 		#template = http.request.env.ref('i4survey.doanhnghiep_mail_template')
 		#http.request.env['mail.template'].sudo().browse(template.id).send_mail(doanhnghiep.id, force_send=True)
 		return http.request.render('i4survey.i4survey_alert', {
-            'message': 'Khảo sát thành công, vui lòng dang nhap he thong để xem kết quả.',
+            'message': 'Đánh giá doanh nghiệp theo mức độ sẵn sàng với CMCN 4.0Xin cám ơn bạn đã dành thời gian để hoàn thành các câu hỏi kiểm tra mức độ sẵn sàng với CMCN 4.0 doanh nghiệp của bạn. Chúng tôi cũng nhấn mạnh các biện pháp cụ thể để Doanh Nghiệp của bạn có thể thực hiện để cải tiến và mở rộng ngành với sự sẵn sàng với CMCN 4.0. Kết quả sẽ được gửi vào mail của bạn đã đăng ký.Xin trân trọng cám ơn.',
             'type': 'success'
         })
 
