@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+    	<record id="crm_case_tree_view_leads_inherit" model="ir.ui.view">
+            <field name="name">crm.lead.tree.lead.inherit</field>
+            <field name="model">crm.lead</field>
+            <field name="inherit_id" ref="crm.crm_case_tree_view_leads"/>
+            <field name="arch" type="xml">
+            	<field name="team_id" position="after">
+            		<field name="status_mail"/>
+            	</field>
+            </field>
+        </record>
+
+        <record id="crm_case_form_view_leads_inherit" model="ir.ui.view">
+        	<field name="name">crm.lead.form.lead.inherit</field>
+        	<field name="model">crm.lead</field>
+            <field name="inherit_id" ref="crm.crm_case_form_view_leads"/>
+            <field name="arch" type="xml">
+            	<xpath expr="//header" position="before">
+            		<field name="status_mail" invisible="1"/>
+            	</xpath>
+            	<xpath expr="//header" position="inside">
+            		<button name="action_send_mail" type="object"
+                                string="Send Result"
+                                class="oe_highlight"
+                                attrs="{'invisible': [('status_mail', '!=', 'draft')]}"/>
+            	</xpath>
+            	<xpath expr="//sheet/group/group/field[@name='tag_ids']" position="after">
+            		<field name="result_url"  widget="result_url" attrs="{'readonly':[('result_url','!=', '')]}"/>
+            	</xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

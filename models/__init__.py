@@ -7,3 +7,4 @@ from . import i4s_survey_suggest
 from . import i4s_data_item
 from . import i4s_question_answer
 from . import i4s_comment
+from . import crm_lead

@@ -5,8 +5,8 @@
             <field name="name">Thông báo khảo sát thành công</field>
             <field name="email_from"><![CDATA["${safe}" <${user.email|safe}>]]></field>
             <field name="subject">Thông báo khảo sát thành công</field>
-            <field name="email_to">${object.email|safe}</field>
-            <field name="model_id" ref="i4survey.model_i4s_doanhnghiep"/>
+            <field name="email_to">${object.email_from|safe}</field>
+            <field name="model_id" ref="i4survey.model_crm_lead"/>
             <field name="auto_delete" eval="False"/>
             <field name="body_html">
                 <![CDATA[
@@ -15,12 +15,12 @@
                     </div>
 
                     <div>
-                        <p>Gửi <b>${object.ten_doanhnghiep}</b>,</p>
-                        <p>Doanh nghiệp <b>${object.ten_doanhnghiep}</b> vừa thực hiện khảo sát thành công. Vui lòng truy cập hệ thống để xem kết quả.
+                        <p>Gửi <b>${object.partner_name}</b>,</p>
+                        <p>Doanh nghiệp <b>${object.partner_name}</b> vừa thực hiện khảo sát thành công. Vui lòng truy cập hệ thống để xem kết quả.
                     </div>
 
                     <div margin: 10px 0;">
-                        <a href="/i4survey/results/${object.id}" style="padding: 5px 10px; font-size: 12px; line-height: 18px; color: #FFFFFF; border-color:#875A7B; text-decoration: none; display: inline-block; margin-bottom: 0px; font-weight: 400; text-align: center; vertical-align: middle; cursor: pointer; white-space: nowrap; background-image: none; background-color: #875A7B; border: 1px solid #875A7B; border-radius:3px">Xem kết quả</a>
+                        <a href="${object.result_url}" style="padding: 5px 10px; font-size: 12px; line-height: 18px; color: #FFFFFF; border-color:#875A7B; text-decoration: none; display: inline-block; margin-bottom: 0px; font-weight: 400; text-align: center; vertical-align: middle; cursor: pointer; white-space: nowrap; background-image: none; background-color: #875A7B; border: 1px solid #875A7B; border-radius:3px">Xem kết quả</a>
                     </div>
 
                     <p>Trân trọng,<br/></p>

@@ -27,6 +27,7 @@ class i4survey(http.Controller):
 		sonhanvien = kw.get('sonhanvien')
 		doanhthu = kw.get('doanhthu')
 		diachi = kw.get('diachi')
+		module_name = 'Đánh giá DN du lịch'
 
 
 
@@ -55,13 +56,28 @@ class i4survey(http.Controller):
 					'expected': expected
 				})
 
+			base_url = http.request.env['ir.config_parameter'].get_param('web.base.url')
+			result_url = ''
+
+			link_tracker = http.request.env['link.tracker'].sudo().create({
+				'title' : module_name,
+				'url' : base_url + '/i4survey/results/' + str(doanhnghiep.id),
+				'medium_id' : 4,
+				'source_id' : 6
+			})
+
+			if link_tracker:
+				result_url = link_tracker.short_url
+
 			http.request.env['crm.lead'].sudo().create({
-				'name' : 'Đánh giá DN du lịch',
+				'name' : module_name,
 				'partner_name' : ten_doanhnghiep,
 				'email_from' : email,
 				'street' : diachi,
 				'phone' : sodienthoai,
-				'contact_name' : nguoi_daidien
+				'contact_name' : nguoi_daidien,
+				'result_url' : result_url,
+				'status_mail' : 'draft'
 			})
 
 			#lv2_list = http.request.env['i4s.data.item'].sudo().search([('datagroupid', '=', 1), ('node_1', '=', lv1.node_1), ('level', '=', 2)])

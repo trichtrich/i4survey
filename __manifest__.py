@@ -20,7 +20,7 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base', 'website', 'web', 'mail'],
+    'depends': ['base', 'website', 'web', 'mail', 'link_tracker', 'crm'],
 
     # always loaded
     'data': [
@@ -33,7 +33,8 @@
         'views/i4survey_mail_template.xml',
         'views/result_message.xml',
         'views/data_group.xml',
-        'views/thank_you.xml'
+        'views/thank_you.xml',
+        'views/crm_lead_views.xml'
     ],
     # only loaded in demonstration mode
     'demo': [
