@@ -178,17 +178,17 @@
 
                                                         <div class="col-md-2 mb-20">
                                                             <select t-att-name="'answer_' + str(q['id'])" class="form-control" form="form-survey">
-                                                                <option>0</option>
+                                                                <!-- <option>0</option>
                                                                 <option>1</option>
                                                                 <option>2</option>
                                                                 <option>3</option>
                                                                 <option>4</option>
-                                                                <option>5</option>
-                                                                <!-- <t t-foreach="q['list_answers']" t-as="a">
+                                                                <option>5</option> -->
+                                                                <t t-foreach="q['list_answers']" t-as="a">
                                                                     <option t-att-value="a.answer_value">
                                                                         <t t-esc="a.answer_content"/>
                                                                     </option>
-                                                                </t> -->
+                                                                </t>
                                                             </select>
                                                         </div>
                                                     </t>
